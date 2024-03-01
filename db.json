@@ -1,0 +1,12 @@
+{
+    "users": {
+      "1": {
+        "id": "1",
+        "username": "adm",
+        "password": "adm",
+        "email": "admin@example.com",
+        "createdAt": "2022-03-01T12:00:00Z"
+      }
+    }
+  }
+  

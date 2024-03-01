@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="stylesheets/dashboard.css">
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <h2>Create New User</h2>
+    <form id="createUserForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value="admin">Admin</option>
+            <option value="tent">Tent</option>
+        </select><br><br>
+        
+        <button type="submit">Create User</button>
+    </form>
+
+    <script src="javascript/dashboard.js"></script>
+</body>
+</html>

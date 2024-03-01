@@ -1,0 +1,8 @@
+# Ignore node_modules directory
+node_modules/
+
+# Ignore environment file (e.g., .env)
+.env
+
+# Ignore Firebase service account key file
+tassotent-firebase-adminsdk-aocci-9708ec06f3
