@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (username === 'adm' && password === 'adm') {
             alert('Login successful!');
             // Redirect to dashboard.html
-            window.location.href = 'dashboard.html';
+            window.location.href = '/dashboard.html';
         } else {
             alert('Invalid username or password');
         }

@@ -9,7 +9,7 @@ const routes = require('./routes/routes');
 const firebaseApp = initializeApp(firebaseConfig);
 
 // Serve static files from the public directory
-app.use(express.static('public/javascript'));
+app.use(express.static('public'));
 
 // Define a route to serve the login.html file
 app.get('/', (req, res) => {
@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
 // Use the routes defined in routes/routes.js
 app.use('/', routes);
 
+// Start the server
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
 });

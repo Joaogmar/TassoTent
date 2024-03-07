@@ -4,6 +4,7 @@ const router = express.Router();
 const admin = require('firebase-admin');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
+const path = require('path');
 
 // Initialize Firebase Admin SDK
 try {
@@ -59,7 +60,9 @@ router.post('/users', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+router.get('/dashboard.html', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/dashboard.html'));
+});
   
-
-
 module.exports = router;
