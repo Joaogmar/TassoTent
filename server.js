@@ -13,7 +13,7 @@ app.use(express.static('public'));
 
 // Define a route to serve the login.html file
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/login.html');
+    res.sendFile(__dirname + '/public/start.html');
 });
 
 // Use the routes defined in routes/routes.js
