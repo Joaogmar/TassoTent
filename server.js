@@ -1,6 +1,6 @@
 require('dotenv').config();
-
 const express = require('express');
+const bodyParser = require('body-parser');
 const { initializeApp } = require("firebase/app");
 const firebaseConfig = require('./dbconfig');
 const app = express();
@@ -10,6 +10,8 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 // Serve static files from the public directory
 app.use(express.static('public'));
+
+app.use(bodyParser.json());
 
 // Define a route to serve the login.html file
 app.get('/', (req, res) => {

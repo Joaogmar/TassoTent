@@ -4,7 +4,6 @@ document.getElementById('createUserForm').addEventListener('submit', async (even
     const formData = new FormData(event.target);
     const userData = {
       username: formData.get('username'),
-      email: formData.get('email'),
       password: formData.get('password'),
       role: formData.get('role')
     };

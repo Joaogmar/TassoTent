@@ -30,22 +30,23 @@ const hashPassword = async (password) => {
 // Create a route to handle user creation
 router.post('/users', async (req, res) => {
   try {
-    console.log("Received user data:", req.body); // Log received user data
+    console.log("Received user data:", req.body);
 
-    const { username, email, password, role, createdAt } = req.body;
+    const { username, password, role } = req.body;
 
-    if (!username || !email || !password || !role || !createdAt) {
-      return res.status(400).json({ error: 'Username, email, password, role, and createdAt are required' });
+    if (!username || !password || !role) {
+      return res.status(400).json({ error: 'Username, password, role, and createdAt are required' });
     }
 
     const hashedPassword = await hashPassword(password);
+    console.log("Hashed password:", hashedPassword);
 
     const newUserRef = admin.database().ref('users').push();
     const userId = newUserRef.key;
+    const createdAt = req.body.createdAt || Date.now();
 
     await newUserRef.set({
       username,
-      email,
       password: hashedPassword,
       role,
       createdAt,
