@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 // Define a route to serve the login.html file
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/start.html');
+    res.sendFile(__dirname + '/public/login.html');
 });
 
 // Use the routes defined in routes/routes.js
