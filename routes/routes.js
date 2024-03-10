@@ -102,8 +102,4 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.get('/dashboard.html', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/dashboard.html'));
-});
-  
 module.exports = router;
