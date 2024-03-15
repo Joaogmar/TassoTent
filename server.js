@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const { initializeApp } = require("firebase/app");
-const firebaseConfig = require('./dbconfig');
+const firebaseConfig = require('./config/dbconfig');
 const app = express();
 const port = 3000;
 const routes = require('./routes/routes');
