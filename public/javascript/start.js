@@ -1,22 +1,22 @@
 document.addEventListener('DOMContentLoaded', function () {
     
     var button = document.getElementById('loginButton');
+    var modal = document.getElementById('loginPopup');
+    var closeModalButton = document.querySelector('.closeModal');
+    var overlay;
 
-   
     button.addEventListener('click', function () {
-        
-        var loginPopup = window.open('login.html', 'loginPopup', 'width=400,height=400');
-
-        
-        var overlay = document.createElement('div');
+        modal.style.display = 'block';
+        overlay = document.createElement('div');
         overlay.classList.add('overlay');
         document.body.appendChild(overlay);
-
-        var checkPopupClosed = setInterval(function() {
-            if (loginPopup.closed) {
-                overlay.remove();
-                clearInterval(checkPopupClosed);
-            }
-        }, 1000); 
+        overlay.addEventListener('click', function () {
+            modal.style.display = 'none';
+            overlay.remove();
+        });
+    });
+    closeModalButton.addEventListener('click', function () {
+        modal.style.display = 'none';
+        overlay.remove(); 
     });
 });

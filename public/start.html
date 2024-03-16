@@ -9,6 +9,24 @@
 </head>
 
 <body>
+    <div class="modal" id="loginPopup">
+        <div class="modal-content" id="loginContent">
+            <span class="closeModal" id="closeModal">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form" action="/dashboard.html" method="GET">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
     <div class="container">
         <img class="logo" src="img/logotasso.png" alt="TassoLogo">
         <img class="background-image" src="img/vamos.jpg" alt="background">
@@ -16,8 +34,8 @@
         <button class="button" id="loginButton">Seguinte</button>
     </div>
 
-    
     <script src="javascript/start.js"></script>
 </body>
 
 </html>
+
