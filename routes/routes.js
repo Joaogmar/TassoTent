@@ -6,6 +6,6 @@ const tentController = require('../controllers/tentController');
 
 router.post('/users', createUser);
 router.post('/login', loginUser);
-router.post('/tents', tentController.createTent);
+router.post('/createTent', tentController.createTent);
 
 module.exports = router;

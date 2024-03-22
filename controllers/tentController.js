@@ -41,7 +41,3 @@ async function createTent(req, res) {
 module.exports = {
   createTent
 };
-
-module.exports = {
-    createTent
-};
