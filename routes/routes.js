@@ -7,5 +7,7 @@ const tentController = require('../controllers/tentController');
 router.post('/users', createUser);
 router.post('/login', loginUser);
 router.post('/createTent', tentController.createTent);
+router.delete('/deleteTent', tentController.deleteTent);
+
 
 module.exports = router;

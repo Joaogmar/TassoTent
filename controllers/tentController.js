@@ -38,6 +38,55 @@ async function createTent(req, res) {
   }
 }
 
+async function deleteTent(req, res) {
+  try {
+    const tentRef = admin.database().ref('tents');
+
+    // Log fetching tent list
+    console.log('Fetching current tent list...');
+
+    // Fetch current tent list using a transaction for consistency
+    await tentRef.once('value', async (snapshot) => {
+      const currentTentList = snapshot.val();
+
+      if (!currentTentList) {
+        console.log('No tents found in the database');
+        res.status(404).json({ error: 'No tents found in the database' });
+        return;
+      }
+
+      // Log retrieved tent list (optional)
+      // console.log('Current tent list:', currentTentList);
+
+      // Find the highest existing tent ID
+      const lastTentKey = Object.keys(currentTentList).sort().pop();
+      console.log('Extracted last tent key:', lastTentKey);
+
+      const lastTentId = parseInt(lastTentKey.slice(4)); // Extract the number from the key
+      console.log('Extracted tent ID:', lastTentId);
+
+      if (isNaN(lastTentId)) {
+        console.log('Invalid tent ID format');
+        res.status(500).json({ error: 'Invalid tent ID format' });
+        return;
+      }
+
+      // Log attempt to delete tent
+      console.log(`Attempting to delete tent tent${lastTentId}`);
+
+      // Remove the last tent from the database
+      await tentRef.child(lastTentKey).remove();
+
+      console.log(`Tent tent${lastTentId} deleted successfully`);
+      res.status(200).json({ message: `Tent tent${lastTentId} deleted successfully` });
+    });
+  } catch (error) {
+    console.error('Error deleting last tent:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
 module.exports = {
-  createTent
+  createTent,
+  deleteTent
 };

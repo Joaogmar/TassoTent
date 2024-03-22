@@ -63,3 +63,28 @@ plusButton.addEventListener('click', async () => {
       // Optionally, handle network errors
     }
   });
+
+  const minusButton = document.querySelector('.minus-btn');
+
+  minusButton.addEventListener('click', async () => {
+      try {
+          console.log('Sending request to delete the last tent...');
+  
+          const response = await fetch('/deleteTent', {
+              method: 'DELETE',
+          });
+  
+          console.log("Server response:", response);
+  
+          if (response.ok) {
+              console.log('Last tent deleted successfully');
+              // Optionally, update the UI to reflect the removal of the last tent
+          } else {
+              console.error('Failed to delete last tent:', response.statusText);
+              // Optionally, handle errors
+          }
+      } catch (error) {
+          console.error('Error deleting last tent:', error);
+          // Optionally, handle network errors
+      }
+  });
