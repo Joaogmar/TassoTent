@@ -88,3 +88,21 @@ plusButton.addEventListener('click', async () => {
           // Optionally, handle network errors
       }
   });
+
+  // Function to fetch and display the total number of tents
+async function displayTotalTentCount() {
+  try {
+    const response = await fetch('/totalTentCount');
+    if (response.ok) {
+      const data = await response.json();
+      document.getElementById('totalTents').innerText = `Total Tents: ${data.totalTents}`;
+    } else {
+      console.error('Failed to fetch total tent count:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error fetching total tent count:', error);
+  }
+}
+
+// Call the function to display the total number of tents when the page loads
+window.addEventListener('load', displayTotalTentCount);

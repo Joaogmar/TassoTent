@@ -8,6 +8,8 @@ router.post('/users', createUser);
 router.post('/login', loginUser);
 router.post('/createTent', tentController.createTent);
 router.delete('/deleteTent', tentController.deleteTent);
+router.get('/totalTentCount', tentController.getTotalTentCount);
+
 
 
 module.exports = router;
