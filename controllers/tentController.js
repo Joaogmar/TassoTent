@@ -100,8 +100,21 @@ async function getTotalTentCount(req, res) {
   }
 }
 
+async function getAllTents(req, res) {
+  try {
+    const tentRef = admin.database().ref('tents');
+    const snapshot = await tentRef.once('value');
+    const tents = snapshot.val();
+    res.status(200).json({ tents });
+  } catch (error) {
+    console.error('Error fetching tents:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
 module.exports = {
   createTent,
   deleteTent,
-  getTotalTentCount
+  getTotalTentCount,
+  getAllTents
 };
