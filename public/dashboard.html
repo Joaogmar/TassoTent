@@ -8,22 +8,35 @@
 </head>
 <body>
     <h1>Dashboard</h1>
-    <h2>Create New User</h2>
-    <form id="createUserForm">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br><br>
-        
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
+    <h2>Create New User & Tent Management</h2>
+    <div class="user-container">
+        <div class="user-box">
+            <form id="createUserForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br><br>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br><br>
 
-        <label for="role">Role:</label>
-        <select id="role" name="role">
-            <option value="admin">Admin</option>
-            <option value="tent">Tent</option>
-        </select><br><br>
-        
-        <button type="submit">Create User</button>
-    </form>
+                <label for="role">Role:</label>
+                <select id="role" name="role">
+                    <option value="admin">Admin</option>
+                    <option value="tent">Tent</option>
+                </select><br><br>
+            </form>
+            <button type="submit" form="createUserForm">Create User</button>
+        </div>
+
+        <div class="tent-box">
+            <h3>Tent Management</h3>
+            <p>Total Tents: <span id="totalTents">Loading...</span></p>
+            <div>
+                <!-- Plus and minus buttons for tent management -->
+                <button type="button" class="plus-btn">+</button>
+                <button type="button" class="minus-btn">-</button>
+            </div>
+        </div>
+    </div>
 
     <script src="javascript/dashboard.js"></script>
 </body>
