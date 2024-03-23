@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tasso</title>
     <link rel="stylesheet" href="stylesheets/start.css">
+    <style>
+        .site-description {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -22,7 +27,7 @@
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                <button type="submit">Login</button>
+                <button class="login-button" type="submit">Login</button>
             </form>
         </div>
     </div>
@@ -31,11 +36,44 @@
         <img class="logo" src="img/logotasso.png" alt="TassoLogo">
         <img class="background-image" src="img/vamos.jpg" alt="background">
         <br>
-        <button class="button" id="loginButton">Seguinte</button>
+        <button class="next-button" id="loginButton">Seguinte</button>
+    </div>
+
+    <!-- Descrição do Site -->
+    <div class="site-description-box">
+        <div class="site-description">
+            <h2>Conheça a Tasso Tent</h2>
+            <p>Bem-vindo ao nosso site!</p>
+            <p>Poderás aceder e utilizar os nossos equipamentos IoT, além de obter informações detalhadas sobre os mesmos. Explore as nossas soluções inovadoras, tire dúvidas e descubra como as nossas tecnologias podem transformar a sua experiência em festivais.</p>
+            <p>Estamos aqui para ajudá-lo a aproveitar ao máximo cada momento</p>
+        </div>
+    </div>
+
+    <!-- Seção da Equipe -->
+    <div class="team-container">
+        <h2>Equipa</h2>
+
+        <!-- Membros da Equipe -->
+        <div class="team-members">
+            <!-- Membro da Equipe 1 -->
+            <div class="team-member">
+                <h3 class="member-name">Rodrigo de Almeida</h3>
+                <img src="img/rodri.jpg" alt="Rodrigo de Almeida">
+            </div>
+            <!-- Membro da Equipe 2 -->
+            <div class="team-member">
+                <h3 class="member-name">João Marques</h3>
+                <img src="img/joao.jpeg" alt="João Marques">
+            </div>
+            <!-- Membro da Equipe 3 -->
+            <div class="team-member">
+                <h3 class="member-name">Afonso Goulart</h3>
+                <img src="img/afonso.jpg" alt="Afonso Goulart">
+            </div>
+        </div>
     </div>
 
     <script src="javascript/start.js"></script>
 </body>
 
 </html>
-
