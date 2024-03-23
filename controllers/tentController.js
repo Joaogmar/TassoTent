@@ -112,9 +112,42 @@ async function getAllTents(req, res) {
   }
 }
 
+async function updatePassword(req, res) {
+  try {
+    const { key } = req.params;
+    const { password } = req.body;
+
+    const tentRef = admin.database().ref(`tents/${key}`);
+    await tentRef.update({ password });
+
+    res.status(200).json({ message: 'Password updated successfully' });
+  } catch (error) {
+    console.error('Error updating password:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
+async function updateAllPasswords(req, res) {
+  try {
+    const newPassword = generateRandomPassword(); // Generate a new random password
+    const tentRef = admin.database().ref('tents');
+    const snapshot = await tentRef.once('value');
+    snapshot.forEach(childSnapshot => {
+      const key = childSnapshot.key;
+      tentRef.child(key).update({ password: newPassword });
+    });
+    res.status(200).json({ message: 'Passwords updated successfully' });
+  } catch (error) {
+    console.error('Error updating passwords:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
 module.exports = {
   createTent,
   deleteTent,
   getTotalTentCount,
-  getAllTents
+  getAllTents,
+  updatePassword,
+  updateAllPasswords
 };
