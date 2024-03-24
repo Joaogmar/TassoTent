@@ -42,7 +42,7 @@ body {
 }
 
 .team-container {
-    background-color: rgba(14, 13, 13, 0.8);
+    background-color: rgba(124, 156, 124, 0.8); /* Cor com transparência */
     padding: 40px;
     text-align: center;
     margin-top: 100px;
@@ -50,13 +50,14 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+
 .team-members {
     display: flex;
     justify-content: center;
 }
 
 .team-member {
-    background-color: rgba(123, 119, 119, 0.5);
+    background-color: rgba(200, 195, 195, 0.5);
     padding: 30px;
     margin-bottom: 30px;
     border-radius: 10px;
@@ -118,24 +119,55 @@ p {
 .modal-content {
     text-align: left; 
 }
+/* O CSS anterior permanece o mesmo */
+
+.modal-content input[type="text"],
+.modal-content input[type="password"] {
+    margin: 0 auto; /* Isso centraliza horizontalmente */
+    display: block; /* Para ocupar toda a largura disponível */
+}
+
+.modal-content label {
+    display: block;
+    width: 80px;
+    margin: 0 auto 10px; /* Adiciona margem inferior para espaçamento */
+    color: #ffffff;
+    text-align: center; /* Centraliza o texto */
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="password"] {
+    margin: 0 auto; /* Isso centraliza horizontalmente */
+    display: block; /* Para ocupar toda a largura disponível */
+    width: calc(100% - 90px); /* Define a largura dos inputs */
+    padding: 8px;
+    border: 1px solid #f4f4f4;
+    background-color: #9dc09d;
+    border-radius: 3px;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
 
 label {
-    display: inline-block; 
-    width: 80px; 
-    margin-right: 10px; 
+    display: block;
+    width: 80px;
+    margin: 0 auto 10px; /* Adiciona margem inferior para espaçamento */
     color: #ffffff;
+    text-align: center; /* Centraliza o texto */
 }
 
 input[type="text"],
 input[type="password"] {
-    width: calc(100% - 90px); 
+    width: calc(100% - 90px);
     padding: 8px;
-    border: 1px solid #f4f4f4; 
-    background-color: #9dc09d; 
+    border: 1px solid #f4f4f4;
+    background-color: #9dc09d;
     border-radius: 3px;
     color: #000000;
-    margin-bottom: 10px; 
+    margin: 0 auto 10px; /* Adiciona margem inferior para espaçamento e centraliza horizontalmente */
 }
+
 
 button {
     width: calc(100% - 16px); 
@@ -167,7 +199,12 @@ h2 {
     cursor: pointer;
 }
 
-.login-button,
+.login-button {
+    display: block;
+    margin: 0 auto; /* Isso centraliza horizontalmente o botão */
+    margin-top: 20px; /* Adiciona um espaçamento superior */
+}
+
 .next-button {
     padding: 8px 16px; 
     font-size: 14px; 
@@ -176,13 +213,16 @@ h2 {
 }
 
 .site-description-box {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(124, 156, 124, 0.8); /* Cor com transparência */
     width: 80%;
     margin: 300px auto 50px; 
     padding: 20px;
     color: white; 
     max-height: 400px; 
-    overflow-y: auto; 
+    overflow-y: auto;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid #fff;
 }
 
 .site-description h2,
@@ -207,3 +247,52 @@ h2 {
     border: none; 
     transition: transform 0.3s ease; 
 }
+
+.contact-container {
+    background-color: rgba(124, 156, 124, 0.8); /* Cor com transparência */
+    padding: 40px;
+    text-align: center;
+    margin-top: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.contact-container h2 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.contact-container p {
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* Adiciona um overlay que cobre toda a página */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* cor de fundo escura com transparência */
+    z-index: 999; /* coloca o overlay sobre todos os outros elementos */
+}
+
+/* Estilize o botão Seguinte */
+.next-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #3F8880;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.next-button:hover {
+    background-color: #9dc09d;
+}
+
