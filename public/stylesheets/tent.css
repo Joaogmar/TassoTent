@@ -90,21 +90,3 @@
 .def-icon {
     font-size: 50px;
 }
-
-@media screen and (max-width: 600px) {
-    .bi-square,
-    .bi-squarec {
-        width: 100px; /* Ajusta a largura dos botões para dispositivos móveis */
-        height: 100px; /* Ajusta a altura dos botões para dispositivos móveis */
-        font-size: 16px; /* Ajusta o tamanho do texto dos botões para dispositivos móveis */
-    }
-
-    .def-button {
-        width: 30px; /* Ajusta a largura dos botões para dispositivos móveis */
-        height: 30px; /* Ajusta a altura dos botões para dispositivos móveis */
-    }
-
-    .bi-icon {
-        font-size: 14px;
-    }
-}
