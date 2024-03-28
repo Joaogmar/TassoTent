@@ -36,6 +36,7 @@
 .bi-squarec:hover {
     background-color: #d5ceaa;
     color: #FEF6CD;
+    transform: translateY(-5px);
 }
 
 .bi-square,
@@ -51,9 +52,10 @@
     color: #A69F7C;
     cursor: pointer;
     border-radius: 5px;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins',sans-serif;
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra suave */
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease;
 }
 
 .bi-squarec {
@@ -100,5 +102,9 @@
     .def-button {
         width: 30px; /* Ajusta a largura dos botões para dispositivos móveis */
         height: 30px; /* Ajusta a altura dos botões para dispositivos móveis */
+    }
+
+    .bi-icon {
+        font-size: 14px;
     }
 }

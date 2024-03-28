@@ -10,42 +10,45 @@
             overflow: hidden;
         }
     </style>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"/>
     <link rel="stylesheet" href="stylesheets/tent.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <script src="javascript/tent.js" defer></script>
 </head>
 
 <body>
     <div>
-        <img class="t-logo" src="img/logotasso.png" alt="TassoLogo">
+        <a href="start.html">
+            <img id="home" class="t-logo" src="img/logotasso.png" alt="TassoLogo">
+        </a>
         <img class="bck-image" src="img/bck-tent.png" alt="background">
         <button class="def-button">
-            <i class="material-icons def-icon">settings</i>
+            <i class="material-symbols-outlined def-icon">settings</i>
         </button>
     </div>
     <div class="container">
         <div class="button-container">
             <button class="bi-square">
-                <i class="material-icons bi-icon">device_thermostat</i>
+                <span class="material-symbols-outlined bi-icon">device_thermostat</span>
                 10%
             </button>
             <button class="bi-square">
-                <i class="material-icons bi-icon">water_drop</i>
+                <span class="material-symbols-outlined bi-icon">water_drop</span>
                 20%
             </button>
-            <button class="bi-squarec">
-                <i class="material-icons bi-icon">mode_fan_off</i>
-                Off
+            <button id="fan-button" class="bi-squarec">
+                <span id="fan-icon" class="material-symbols-outlined bi-icon">mode_fan</span>
+                <span id="fan-text">On</span>
             </button>
             <button class="bi-squarec">
-                <i class="material-icons bi-icon">air</i>
+                <span class="material-symbols-outlined bi-icon">air</span>
                 26 - Good
             </button>
             <button id="door-button" class="bi-square">
-                <i id="door-icon" class="material-icons bi-icon">door_front</i>
+                <span id="door-icon" class="material-symbols-outlined bi-icon">door_front</span>
             </button>
             <button class="bi-square">
-                <i class="material-icons bi-icon">report</i>
+                <span class="material-symbols-outlined bi-icon">report</span>
             </button>
         </div>
     </div>
