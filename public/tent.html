@@ -1,13 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tent</title>
+    <style>
+        body {
+            overflow: hidden;
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="stylesheets/tent.css">
+    <script src="javascript/tent.js" defer></script>
 </head>
+
 <body>
-    <header>
-        <h1>Tent</h1>
-    </header>
+    <div>
+        <img class="t-logo" src="img/logotasso.png" alt="TassoLogo">
+        <img class="bck-image" src="img/bck-tent.png" alt="background">
+        <button class="def-button">
+            <i class="material-icons def-icon">settings</i>
+        </button>
+    </div>
+    <div class="container">
+        <div class="button-container">
+            <button class="bi-square">
+                <i class="material-icons bi-icon">device_thermostat</i>
+                10%
+            </button>
+            <button class="bi-square">
+                <i class="material-icons bi-icon">water_drop</i>
+                20%
+            </button>
+            <button class="bi-squarec">
+                <i class="material-icons bi-icon">mode_fan_off</i>
+                Off
+            </button>
+            <button class="bi-squarec">
+                <i class="material-icons bi-icon">air</i>
+                26 - Good
+            </button>
+            <button id="door-button" class="bi-square">
+                <i id="door-icon" class="material-icons bi-icon">door_front</i>
+            </button>
+            <button class="bi-square">
+                <i class="material-icons bi-icon">report</i>
+            </button>
+        </div>
+    </div>
 </body>
+
 </html>

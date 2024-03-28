@@ -1,0 +1,104 @@
+.bck-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.t-logo {
+    width: 250px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    align-content: center;
+}
+
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+    grid-gap: 100px;
+    align-items: center;
+    position: relative;
+    margin-top: -140px;
+}
+
+.bi-square:hover,
+.bi-squarec:hover {
+    background-color: #d5ceaa;
+    color: #FEF6CD;
+}
+
+.bi-square,
+.bi-squarec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px; /* Definir a largura dos botões */
+    height: 150px; /* Definir a altura dos botões */
+    font-size: 24px;
+    border: none;
+    background-color: #FEF6CD;
+    color: #A69F7C;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 40px 60px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra suave */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.bi-squarec {
+    flex-direction: column;
+}
+
+.def-button {
+    align-items: center;
+    justify-content: center;
+    width: 80px; /* Definir a largura dos botões */
+    height: 80px; /* Definir a altura dos botões */
+    border: none;
+    background-color: #3F8880;
+    color: #FAFCFE;
+    cursor: pointer;
+    border-radius: 5px;
+    position: absolute; /* Define o posicionamento absoluto */
+    top: 30px; /* Ajusta a posição a partir do topo */
+    right: 30px;
+    box-shadow: 0 40px 60px rgba(0, 0, 0, 0.2); /* Adiciona uma sombra suave */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.def-button:hover {
+    background-color: #37776e;
+}
+
+.bi-icon {
+    font-size: 64px;
+}
+
+.def-icon {
+    font-size: 50px;
+}
+
+@media screen and (max-width: 600px) {
+    .bi-square,
+    .bi-squarec {
+        width: 100px; /* Ajusta a largura dos botões para dispositivos móveis */
+        height: 100px; /* Ajusta a altura dos botões para dispositivos móveis */
+        font-size: 16px; /* Ajusta o tamanho do texto dos botões para dispositivos móveis */
+    }
+
+    .def-button {
+        width: 30px; /* Ajusta a largura dos botões para dispositivos móveis */
+        height: 30px; /* Ajusta a altura dos botões para dispositivos móveis */
+    }
+}
