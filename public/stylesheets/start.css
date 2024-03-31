@@ -126,17 +126,19 @@ body {
 }
 
 .logo {
-    width: 50vh;
+    width: 40vh;
     height: auto;
-    margin-top: -4vh;
+    margin: auto;
+    display: flex;
+    justify-content: center;
 }
 
 .vibra-text {
     font-size: 3vh;
     text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
-    margin-top: 6vh;
+    margin-top: 15vh;
     color: #fff;
-    padding: 0.2vh;
+    padding: 0.5vh;
 }
 
 .next-button {
@@ -172,16 +174,23 @@ body {
     text-align: center; 
     color: #ffffff;
     margin-top: 2vh;
+    text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
+    font-size: 2.5vh
 }
 
 .site-description-text {
     font-size: 1.8vh;
 }
 
+.site-description-bv {
+    font-size: 2vh;
+    text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
+}
+
 .site-description-box {
     background-color: rgba(124, 156, 124, 0.8); 
     width: 80%;
-    margin: 30vh auto 5vh; 
+    margin: 5vh auto; 
     padding: 2vh;
     color: white; 
     max-height: 40vh; 
@@ -190,6 +199,7 @@ body {
     box-shadow: 0px 0px 1vh rgba(0, 0, 0, 0.5);
     border: 0.2vh solid #fff;
     font-family: 'Poppins',sans-serif;
+    margin-top: 15vh;
 }
 
 .team-container {
@@ -214,9 +224,17 @@ body {
     border-radius: 1vh;
     box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
-    margin-right: 1.5vh;
-    margin-left: 1.5vh;
+    margin-right: 2vh;
+    margin-left: 2vh;
     margin-top: 2vh;
+    width: 15vh;
+}
+
+@media screen and (max-width: 768px) {
+    .team-members {
+        flex-direction: column;
+        margin-left: 4.7vh;
+    }
 }
 
 .team-member img {
@@ -242,6 +260,8 @@ body {
 .team-container h2 {
     color:#fff;
     margin-top: -2vh;
+    text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
+    font-size: 2.5vh;
 }
 
 .contact-container {
@@ -287,12 +307,18 @@ body {
     transition: opacity 0.3s ease; /* Adiciona uma transição suave para opacity */
 }
 
-/* Remover a Scrollbar*/
-
 html {
     scrollbar-width: none; /* Para Firefox */
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 body {
     -ms-overflow-style: none; /* Para Internet Explorer 10+ */
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }

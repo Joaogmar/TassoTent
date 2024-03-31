@@ -36,3 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 300);
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const bodyScroll = new PerfectScrollbar('body');
+});
