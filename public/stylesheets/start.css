@@ -30,14 +30,17 @@ body {
     height: 30vh;
     box-shadow: 0px 0px 0.1vh rgba(0, 0, 0, 0.5);
     font-family: 'Poppins',sans-serif;
+    opacity: 0; /* Define a opacidade inicial como 0 */
+    transform: scale(0.8); /* Define a escala inicial como 0.8 */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Adiciona uma transição suave para opacity e transform */
 }
 
 .login-content {
     text-align: center;
     color: #fff;
-    position: relative; /* Definindo a posição relativa */
-    top: 50%; /* Movendo o conteúdo para metade da altura do pop-up */
-    transform: translateY(-50%); /* Ajustando para centralizar verticalmente */
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
     text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
 }
 
@@ -278,6 +281,8 @@ body {
     background-color: rgba(0, 0, 0, 0.5); 
     z-index: 999;
     display: none;
+    opacity: 0; /* Define a opacidade inicial como 0 */
+    transition: opacity 0.3s ease; /* Adiciona uma transição suave para opacity */
 }
 
 /* Remover a Scrollbar*/
