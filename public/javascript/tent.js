@@ -24,7 +24,7 @@ document.getElementById("fan-button").addEventListener("click", function() {
 function openSettingsPopup() {
     var popup = document.getElementById("settPopup");
     var overlay = document.getElementById("settOverlay");
-    popup.style.display = "block";
+    popup.classList.add("show");
     overlay.style.display = "block";
 }
 
@@ -33,7 +33,7 @@ document.getElementById("settButton").addEventListener("click", openSettingsPopu
 document.getElementById("closeSett").addEventListener("click", function() {
     var popup = document.getElementById("settPopup");
     var overlay = document.getElementById("settOverlay");
-    popup.style.display = "none";
+    popup.classList.remove("show");
     overlay.style.display = "none";
 });
 
@@ -41,7 +41,7 @@ document.getElementById("settOverlay").addEventListener("click", function(event)
     var popup = document.getElementById("settPopup");
     var overlay = document.getElementById("settOverlay");
     if (event.target === overlay) {
-        popup.style.display = "none";
+        popup.classList.remove("show");
         overlay.style.display = "none";
     }
 });
