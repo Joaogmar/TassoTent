@@ -24,7 +24,8 @@ document.getElementById("fan-button").addEventListener("click", function() {
 function openSettingsPopup() {
     var popup = document.getElementById("settPopup");
     var overlay = document.getElementById("settOverlay");
-    popup.classList.add("show");
+    popup.style.display = "block"; // Alterado para display block para ativar a animação
+    popup.classList.remove("hide"); // Remove a classe hide
     overlay.style.display = "block";
 }
 
@@ -33,7 +34,7 @@ document.getElementById("settButton").addEventListener("click", openSettingsPopu
 document.getElementById("closeSett").addEventListener("click", function() {
     var popup = document.getElementById("settPopup");
     var overlay = document.getElementById("settOverlay");
-    popup.classList.remove("show");
+    popup.classList.add("hide"); // Adiciona a classe hide
     overlay.style.display = "none";
 });
 
@@ -41,7 +42,14 @@ document.getElementById("settOverlay").addEventListener("click", function(event)
     var popup = document.getElementById("settPopup");
     var overlay = document.getElementById("settOverlay");
     if (event.target === overlay) {
-        popup.classList.remove("show");
+        popup.classList.add("hide"); // Adiciona a classe hide
         overlay.style.display = "none";
+    }
+});
+
+// Adiciona um evento de transição para quando a animação de slideOut terminar, ocultar o pop-up
+document.getElementById("settPopup").addEventListener("animationend", function(event) {
+    if (event.animationName === "slideOut") {
+        this.style.display = "none";
     }
 });

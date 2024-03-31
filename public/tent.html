@@ -10,20 +10,19 @@
             overflow: hidden;
         }
     </style>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"/>
     <link rel="stylesheet" href="stylesheets/tent.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 </head>
 
 <body>
     <div>
         <a href="start.html">
-            <img id="home" class="t-logo" src="img/logotasso.png" alt="TassoLogo">
+            <img class="t-logo" id="home" src="img/logotasso.png" alt="TassoLogo">
         </a>
         <img class="bck-image" src="img/bck-tent.png" alt="background">
         <button class="sett-button" id="settButton">
-            <i class="material-symbols-outlined sett-icon">settings</i>
+            <span class="material-symbols-outlined sett-icon">settings</span>
         </button>
     </div>
     <div class="container">
@@ -52,9 +51,9 @@
             </button>
         </div>
     </div>
-    <div id="settPopup" class="sett-popup">
-        <button id="closeSett" class="close-sett">
-            <span class="material-symbols-outlined">arrow_left_alt</span>
+    <div class="sett-popup" id="settPopup">
+        <button class="close-sett" id="closeSett">
+            <span class="material-symbols-outlined close-sett-icon">arrow_left_alt</span>
         </button>
         <div class="sett-popup-title">
             <h2>Definições</h2>
