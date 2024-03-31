@@ -21,6 +21,27 @@ document.getElementById("fan-button").addEventListener("click", function() {
     }
 });
 
-document.getElementById("home").addEventListener("click", function() {
-    window.location.href = "start.html";
+function openSettingsPopup() {
+    var popup = document.getElementById("settPopup");
+    var overlay = document.getElementById("settOverlay");
+    popup.style.display = "block";
+    overlay.style.display = "block";
+}
+
+document.getElementById("settButton").addEventListener("click", openSettingsPopup);
+
+document.getElementById("closeSett").addEventListener("click", function() {
+    var popup = document.getElementById("settPopup");
+    var overlay = document.getElementById("settOverlay");
+    popup.style.display = "none";
+    overlay.style.display = "none";
+});
+
+document.getElementById("settOverlay").addEventListener("click", function(event) {
+    var popup = document.getElementById("settPopup");
+    var overlay = document.getElementById("settOverlay");
+    if (event.target === overlay) {
+        popup.style.display = "none";
+        overlay.style.display = "none";
+    }
 });

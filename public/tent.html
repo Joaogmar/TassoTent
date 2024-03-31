@@ -10,10 +10,10 @@
             overflow: hidden;
         }
     </style>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"/>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
     <link rel="stylesheet" href="stylesheets/tent.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-    <script src="javascript/tent.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
 </head>
 
 <body>
@@ -22,8 +22,8 @@
             <img id="home" class="t-logo" src="img/logotasso.png" alt="TassoLogo">
         </a>
         <img class="bck-image" src="img/bck-tent.png" alt="background">
-        <button class="def-button">
-            <i class="material-symbols-outlined def-icon">settings</i>
+        <button class="sett-button" id="settButton">
+            <i class="material-symbols-outlined sett-icon">settings</i>
         </button>
     </div>
     <div class="container">
@@ -52,6 +52,22 @@
             </button>
         </div>
     </div>
+    <div id="settPopup" class="sett-popup">
+        <button id="closeSett" class="close-sett">
+            <span class="material-symbols-outlined">arrow_left_alt</span>
+        </button>
+        <div class="sett-popup-title">
+            <h2>Definições</h2>
+            <div class="options-column">
+                <button class="option-button">IDIOMA</button>
+                <button class="option-button">AJUDA</button>
+                <button class="option-button">FAQs</button>
+                <button class="option-button">LOGOUT</button>
+            </div>
+        </div>
+    </div>
+    <div id="settOverlay" class="sett-overlay"></div>
+    <script src="javascript/tent.js"></script>
 </body>
 
 </html>
