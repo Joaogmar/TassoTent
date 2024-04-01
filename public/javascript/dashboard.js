@@ -1,35 +1,33 @@
-// Function to create a new user
-document.getElementById('createUserForm').addEventListener('submit', async (event) => {
+document.getElementById('createAdminForm').addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const formData = new FormData(event.target);
-  const userData = {
+  const adminData = {
     username: formData.get('username'),
-    password: formData.get('password'),
-    role: formData.get('role')
+    password: formData.get('password')
   };
 
   try {
-    console.log("Sending user data:", userData);
+    console.log("Sending admin data:", adminData);
 
-    const response = await fetch('/users', {
+    const response = await fetch('/admins', { // Changed endpoint to create admins
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(userData)
+      body: JSON.stringify(adminData)
     });
 
     console.log("Server response:", response);
 
     if (response.ok) {
-      console.log('User created successfully');
+      console.log('Admin created successfully');
       await displayTotalTentCount();
     } else {
-      console.error('Failed to create user:', response.statusText);
+      console.error('Failed to create admin:', response.statusText);
     }
   } catch (error) {
-    console.error('Error creating user:', error);
+    console.error('Error creating admin:', error);
   }
 });
 
@@ -92,6 +90,6 @@ async function displayTotalTentCount() {
   } catch (error) {
     console.error('Error fetching total tent count:', error);
   }
-}
+} 
 
 window.addEventListener('load', displayTotalTentCount);

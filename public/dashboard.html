@@ -1,30 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="stylesheets/dashboard.css">
 </head>
+
 <body>
     <h1>Dashboard</h1>
-    <h2>Create New User & Tent Management</h2>
+    <h2>Create New Admin & Tent Management</h2>
     <div class="user-container">
         <div class="user-box">
-            <form id="createUserForm">
+            <form id="createAdminForm">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required><br><br>
-                
+
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required><br><br>
-
-                <label for="role">Role:</label>
-                <select id="role" name="role">
-                    <option value="admin">Admin</option>
-                    <option value="tent">Tent</option>
-                </select><br><br>
             </form>
-            <button type="submit" form="createUserForm">Create User</button>
+            <button type="submit" form="createAdminForm">Create Admin</button>
         </div>
 
         <div class="tent-box">
@@ -40,4 +36,5 @@
 
     <script src="javascript/dashboard.js"></script>
 </body>
+
 </html>
