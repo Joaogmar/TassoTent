@@ -307,6 +307,12 @@ body {
     transition: opacity 0.3s ease; /* Adiciona uma transição suave para opacity */
 }
 
+.no-scroll {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
 html {
     scrollbar-width: none; /* Para Firefox */
     margin: 0;
