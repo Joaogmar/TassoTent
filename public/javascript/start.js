@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var loginButton = document.getElementById("loginButton");
+    var nextButton = document.getElementById("nextButton");
     var loginPopup = document.getElementById("loginPopup");
     var closeModalButton = document.getElementById("closeModal");
     var overlay = document.getElementById("overlay");
 
-    loginButton.addEventListener("click", function() {
-
+    nextButton.addEventListener("click", function() {
         loginPopup.style.display = "block";
         overlay.style.display = "block";
+        document.body.classList.add("no-scroll");
         setTimeout(function() {
             loginPopup.style.opacity = "1";
             loginPopup.style.transform = "scale(1) translate(-50%, -50%)";
@@ -16,13 +16,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     closeModalButton.addEventListener("click", function() {
-        // Esconde o popup de login
         loginPopup.style.opacity = "0";
         loginPopup.style.transform = "scale(0.8) translate(-50%, -50%)";
         overlay.style.opacity = "0";
         setTimeout(function() {
             loginPopup.style.display = "none";
             overlay.style.display = "none";
+            document.body.classList.remove("no-scroll");
         }, 300);
     });
 
@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(function() {
             loginPopup.style.display = "none";
             overlay.style.display = "none";
+            document.body.classList.remove("no-scroll");
         }, 300);
     });
 });
