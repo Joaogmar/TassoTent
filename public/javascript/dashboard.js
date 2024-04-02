@@ -59,22 +59,25 @@ plusButton.addEventListener('click', async () => {
 const minusButton = document.querySelector('.minus-btn');
 minusButton.addEventListener('click', async () => {
   try {
-      console.log('Sending request to delete the last tent...');
+    console.log('Sending request to remove a tent...');
 
-      const response = await fetch('/deleteTent', {
-          method: 'DELETE',
-      });
+    const response = await fetch('/removeTent', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
 
-      console.log("Server response:", response);
+    console.log("Server response:", response);
 
-      if (response.ok) {
-          console.log('Last tent deleted successfully');
-          await displayTotalTentCount(); 
-      } else {
-          console.error('Failed to delete last tent:', response.statusText);
-      }
+    if (response.ok) {
+      console.log('Tent removed successfully');
+      await displayTotalTentCount();
+    } else {
+      console.error('Failed to remove tent:', response.statusText);
+    }
   } catch (error) {
-      console.error('Error deleting last tent:', error);
+    console.error('Error removing tent:', error);
   }
 });
 

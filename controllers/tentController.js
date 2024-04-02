@@ -6,23 +6,17 @@ async function createTent(req, res) {
 
     const userRef = admin.database().ref('users');
     const tentRef = userRef.child('tents');
-
-    // Fetch current tent count
     const snapshot = await tentRef.once('value');
     const currentTentCount = snapshot.numChildren();
-
-    // Generate the ID for the new tent
     const newTentId = currentTentCount + 1;
     const newTentName = `tent${newTentId}`;
     const newTentRef = tentRef.child(newTentName);
 
-    // Tent data
     const tentData = {
       username: newTentName,
-      password: newTentName, // Using the same name for simplicity (use a secure method in production)
+      password: newTentName, 
     };
 
-    // Set the new tent data
     await newTentRef.set(tentData);
 
     console.log('Tent created successfully with name:', newTentName);
@@ -33,49 +27,43 @@ async function createTent(req, res) {
   }
 }
 
-async function deleteTent(req, res) {
+async function removeTent(req, res) {
   try {
     const userRef = admin.database().ref('users');
-    const username = req.body.username;
+    const tentRef = userRef.child('tents');
 
-    // Check if the user exists
-    const userSnapshot = await userRef.child(username).once('value');
-    if (!userSnapshot.exists()) {
-      console.log('User does not exist');
-      return res.status(404).json({ error: 'User does not exist' });
+    // Retrieve all tents
+    const snapshot = await tentRef.once('value');
+    const tents = snapshot.val();
+
+    if (!tents) {
+      console.log('No tents found');
+      return res.status(404).json({ error: 'No tents found' });
     }
 
-    const tentRef = userRef.child(`${username}/tents`);
-
-    // Fetch current tent list using a transaction for consistency
-    await tentRef.once('value', async (snapshot) => {
-      const currentTentList = snapshot.val();
-
-      if (!currentTentList) {
-        console.log('No tents found for the user');
-        return res.status(404).json({ error: 'No tents found for the user' });
+    // Find the highest numbered tent
+    let highestTentId;
+    let highestTentNumber = 0;
+    Object.keys(tents).forEach(tentId => {
+      const tentNumber = parseInt(tentId.replace('tent', ''));
+      if (tentNumber > highestTentNumber) {
+        highestTentNumber = tentNumber;
+        highestTentId = tentId;
       }
-
-      const lastTentKey = Object.keys(currentTentList).sort().pop();
-      console.log('Extracted last tent key:', lastTentKey);
-
-      const lastTentId = parseInt(lastTentKey.slice(4));
-      console.log('Extracted tent ID:', lastTentId);
-
-      if (isNaN(lastTentId)) {
-        console.log('Invalid tent ID format');
-        return res.status(500).json({ error: 'Invalid tent ID format' });
-      }
-
-      console.log(`Attempting to delete tent tent${lastTentId}`);
-
-      await tentRef.child(lastTentKey).remove();
-
-      console.log(`Tent tent${lastTentId} deleted successfully`);
-      res.status(200).json({ message: `Tent tent${lastTentId} deleted successfully` });
     });
+
+    if (!highestTentId) {
+      console.log('No tent found');
+      return res.status(404).json({ error: 'No tent found' });
+    }
+
+    // Remove the highest numbered tent
+    await tentRef.child(highestTentId).remove();
+
+    console.log('Tent removed successfully:', highestTentId);
+    res.status(200).json({ message: `Tent ${highestTentId} removed successfully` });
   } catch (error) {
-    console.error('Error deleting last tent:', error);
+    console.error('Error removing tent:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 }
@@ -167,7 +155,7 @@ async function updateAllPasswords(req, res) {
 
 module.exports = {
   createTent,
-  deleteTent,
+  removeTent,
   getTotalTentCount, 
   getAllTents,
   updatePassword,
