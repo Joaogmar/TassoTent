@@ -30,18 +30,20 @@ async function populateTentTable() {
   }
 }
 
-async function updateTentPassword(tentId, newPassword) {
+async function updateTentPassword(tentId) {
   try {
     const response = await fetch('/updateTentPassword', {
       method: 'PUT', // Use PUT for updates
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ tentId, newPassword })
+      body: JSON.stringify({ tentId })
     });
 
     if (response.ok) {
+      const data = await response.json();
       console.log('Tent password updated successfully:', tentId);
+      return data.newPassword; // Return the new password from the response
     } else {
       console.error('Failed to update tent password:', response.statusText);
       // Handle update errors (e.g., display an error message to the user)
@@ -62,13 +64,10 @@ async function addGeneratePasswordEventListeners() {
       const passwordCell = document.getElementById(`password-${tentId}`);
 
       // Generate a random password
-      const newPassword = generateRandomPassword(); // Define newPassword here
+      const newPassword = await updateTentPassword(tentId);
 
       // Update the password display in the table
       passwordCell.textContent = newPassword;
-
-      // Send update request to server
-      await updateTentPassword(tentId, newPassword);
     });
   });
 }

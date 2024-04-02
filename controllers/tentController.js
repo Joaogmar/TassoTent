@@ -110,11 +110,14 @@ async function getAllTents(req, res) {
 
 async function updateTentPassword(req, res) {
   try {
-    const { tentId, newPassword } = req.body;
+    const { tentId } = req.body;
 
-    if (!tentId || !newPassword) {
-      return res.status(400).json({ error: 'Missing required fields (tentId, newPassword)' });
+    if (!tentId) {
+      return res.status(400).json({ error: 'Missing required field (tentId)' });
     }
+
+    // Generate a new random password
+    const newPassword = generateRandomPassword();
 
     const userRef = admin.database().ref('users');
     const tentRef = userRef.child('tents').child(tentId);
@@ -128,7 +131,7 @@ async function updateTentPassword(req, res) {
     await tentRef.update({ password: newPassword }); // Store password in plain text (not recommended)
 
     console.log('Tent password updated successfully:', tentId);
-    res.status(200).json({ message: 'Tent password updated successfully' });
+    res.status(200).json({ message: 'Tent password updated successfully', newPassword });
   } catch (error) {
     console.error('Error updating tent password:', error);
     res.status(500).json({ error: 'Internal server error' });
