@@ -11,16 +11,28 @@ async function populateTentTable() {
       const data = await response.json();
       const tentTableBody = document.querySelector('#tentTable tbody');
       tentTableBody.innerHTML = ''; // Clear existing rows
-      Object.keys(data.tents).forEach(key => {
-        const tent = data.tents[key];
+      
+      // Extract tent IDs and sort them numerically
+      const tentIds = Object.keys(data.tents);
+      tentIds.sort((a, b) => {
+        const idA = parseInt(a.match(/\d+/)[0]);
+        const idB = parseInt(b.match(/\d+/)[0]);
+        return idA - idB;
+      });
+      
+      // Populate the table rows using sorted tent IDs
+      tentIds.forEach(tentId => {
+        const tent = data.tents[tentId];
         const row = `
-        <tr>
-          <td>${tent.username}</td>
-          <td id="password-${key}">${tent.password}</td>
-          <td><button class="generate-password-btn" data-key="${key}">Generate Password</button></td> </tr>
+          <tr>
+            <td>${tent.username}</td>
+            <td id="password-${tentId}">${tent.password}</td>
+            <td><button class="generate-password-btn" data-key="${tentId}">Generate Password</button></td>
+          </tr>
         `;
         tentTableBody.innerHTML += row;
       });
+      
       addGeneratePasswordEventListeners();
     } else {
       console.error('Failed to fetch tent data:', response.statusText);
