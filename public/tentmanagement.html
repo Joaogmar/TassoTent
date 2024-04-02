@@ -13,18 +13,20 @@
     <div class="content-wrapper">
         <img class="bck-image" src="img/bck-tm.png" alt="background">
         <h1>Tent Management</h1>
+        <div class="table-container">
+            <table id="tentTable">
+                <thead class="table-head">
+                    <tr>
+                        <th>Tent Name</th>
+                        <th>Password</th>
+                        <th id="actionHeader">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
         <button class="button-all-passwords" id="updateAllPasswordsBtn">Update All Passwords</button>
-        <table id="tentTable">
-            <thead>
-                <tr>
-                    <th>Tent Name</th>
-                    <th>Password</th>
-                    <th id="actionHeader">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
     </div>
 
     <script src="javascript/tentmanagement.js"></script>
