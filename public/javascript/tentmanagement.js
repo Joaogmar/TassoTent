@@ -1,6 +1,9 @@
-// tentmanagement.js
+import { generateRandomPassword } from './src/utils.js';
+
 window.addEventListener('load', () => {
   populateTentTable();
+  const updateAllPasswordsBtn = document.getElementById('updateAllPasswordsBtn');
+  updateAllPasswordsBtn.addEventListener('click', updateAllPasswords);
 });
 
 async function populateTentTable() {
@@ -13,11 +16,10 @@ async function populateTentTable() {
       Object.keys(data.tents).forEach(key => {
         const tent = data.tents[key];
         const row = `
-          <tr>
-            <td>${tent.username}</td>
-            <td id="password-${key}">${tent.password}</td>
-            <td><button class="generate-password-btn" data-key="${key}">Generate Password</button></td> <!-- Button for generating password -->
-          </tr>
+        <tr>
+          <td>${tent.username}</td>
+          <td id="password-${key}">${tent.password}</td>
+          <td><button class="generate-password-btn" data-key="${key}">Generate Password</button></td> </tr>
         `;
         tentTableBody.innerHTML += row;
       });
@@ -30,48 +32,66 @@ async function populateTentTable() {
   }
 }
 
-function addGeneratePasswordEventListeners() {
-  const generatePasswordButtons = document.querySelectorAll('.generate-password-btn');
-  generatePasswordButtons.forEach(button => {
-    button.addEventListener('click', async () => {
-      const key = button.dataset.key;
-      const newPassword = generateRandomPassword();
-      document.getElementById(`password-${key}`).textContent = newPassword;
-      await updatePasswordInDatabase(key, newPassword);
-    });
-  });
-}
-
-function generateRandomPassword() {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let password = '';
-  for (let i = 0; i < 5; i++) {
-    password += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
-  return password;
-}
-
-async function updatePasswordInDatabase(key, newPassword) {
+async function updateTentPassword(tentId, newPassword) {
   try {
-    await fetch(`/updatePassword/${key}`, {
-      method: 'PUT',
+    const response = await fetch('/updateTentPassword', {
+      method: 'PUT', // Use PUT for updates
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ password: newPassword })
+      body: JSON.stringify({ tentId, newPassword })
     });
-    console.log('Password updated successfully in the database');
+
+    if (response.ok) {
+      console.log('Tent password updated successfully:', tentId);
+    } else {
+      console.error('Failed to update tent password:', response.statusText);
+      // Handle update errors (e.g., display an error message to the user)
+    }
   } catch (error) {
-    console.error('Error updating password in the database:', error);
+    console.error('Error updating tent password:', error);
+    // Handle update errors (e.g., display an error message to the user)
   }
 }
 
-// Add event listener for updating all passwords
-document.getElementById('updateAllPasswordsBtn').addEventListener('click', async () => {
-  const keys = Array.from(document.querySelectorAll('.generate-password-btn')).map(button => button.dataset.key);
-  keys.forEach(async key => {
-    const newPassword = generateRandomPassword();
-    document.getElementById(`password-${key}`).textContent = newPassword;
-    await updatePasswordInDatabase(key, newPassword);
+async function addGeneratePasswordEventListeners() {
+  const generatePasswordButtons = document.querySelectorAll('.generate-password-btn');
+  generatePasswordButtons.forEach(button => {
+    button.addEventListener('click', async (event) => {
+      event.preventDefault(); // Prevent default form submission
+
+      const tentId = button.dataset.key;
+      const passwordCell = document.getElementById(`password-${tentId}`);
+
+      // Generate a random password
+      const newPassword = generateRandomPassword(); // Define newPassword here
+
+      // Update the password display in the table
+      passwordCell.textContent = newPassword;
+
+      // Send update request to server
+      await updateTentPassword(tentId, newPassword);
+    });
   });
-});
+}
+
+async function updateAllPasswords() {
+  try {
+    const response = await fetch('/updateAllPasswords', {
+      method: 'PUT', // Use PUT for updates
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      console.log('All tent passwords updated successfully');
+    } else {
+      console.error('Failed to update all tent passwords:', response.statusText);
+      // Handle update errors (e.g., display an error message to the user)
+    }
+  } catch (error) {
+    console.error('Error updating all tent passwords:', error);
+    // Handle update errors (e.g., display an error message to the user)
+  }
+}

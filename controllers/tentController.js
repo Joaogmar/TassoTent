@@ -1,4 +1,5 @@
 const admin = require('../config/firebaseConfig');
+const { generateRandomPassword } = require('../src/utils');
 
 async function createTent(req, res) {
   try {
@@ -86,18 +87,20 @@ async function getTotalTentCount(req, res) {
 async function getAllTents(req, res) {
   try {
     const userRef = admin.database().ref('users');
-    const username = req.body.username;
-
-    // Check if the user exists
-    const userSnapshot = await userRef.child(username).once('value');
-    if (!userSnapshot.exists()) {
-      console.log('User does not exist');
-      return res.status(404).json({ error: 'User does not exist' });
-    }
-
-    const tentRef = userRef.child(`${username}/tents`);
+    
+    // Access the 'tents' node directly
+    const tentRef = userRef.child('tents');
+    
     const snapshot = await tentRef.once('value');
     const tents = snapshot.val();
+    
+    // Check if any tents were found
+    if (!tents) {
+      console.log('No tents found');
+      return res.status(404).json({ error: 'No tents found' });
+    }
+
+    // Send the tents data in the response
     res.status(200).json({ tents });
   } catch (error) {
     console.error('Error fetching tents:', error);
@@ -105,50 +108,59 @@ async function getAllTents(req, res) {
   }
 }
 
-async function updatePassword(req, res) {
+async function updateTentPassword(req, res) {
   try {
-    const { username, key } = req.body;
-    const { password } = req.body;
+    const { tentId, newPassword } = req.body;
 
-    const userRef = admin.database().ref('users');
-    const userSnapshot = await userRef.child(username).once('value');
-    if (!userSnapshot.exists()) {
-      console.log('User does not exist');
-      return res.status(404).json({ error: 'User does not exist' });
+    if (!tentId || !newPassword) {
+      return res.status(400).json({ error: 'Missing required fields (tentId, newPassword)' });
     }
 
-    const tentRef = userRef.child(`${username}/tents`);
-    await tentRef.child(key).update({ password });
+    const userRef = admin.database().ref('users');
+    const tentRef = userRef.child('tents').child(tentId);
 
-    res.status(200).json({ message: 'Password updated successfully' });
+    // Validate tent existence (optional)
+    const tentSnapshot = await tentRef.once('value');
+    if (!tentSnapshot.exists()) {
+      return res.status(404).json({ error: 'Tent not found' });
+    }
+
+    await tentRef.update({ password: newPassword }); // Store password in plain text (not recommended)
+
+    console.log('Tent password updated successfully:', tentId);
+    res.status(200).json({ message: 'Tent password updated successfully' });
   } catch (error) {
-    console.error('Error updating password:', error);
+    console.error('Error updating tent password:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 }
 
 async function updateAllPasswords(req, res) {
   try {
-    const { username } = req.body;
-    const newPassword = generateRandomPassword();
-    
     const userRef = admin.database().ref('users');
-    const userSnapshot = await userRef.child(username).once('value');
-    if (!userSnapshot.exists()) {
-      console.log('User does not exist');
-      return res.status(404).json({ error: 'User does not exist' });
+    const tentRef = userRef.child('tents');
+
+    // Retrieve all tents
+    const snapshot = await tentRef.once('value');
+    const tents = snapshot.val();
+
+    if (!tents) {
+      console.log('No tents found');
+      return res.status(404).json({ error: 'No tents found' });
     }
 
-    const tentRef = userRef.child(`${username}/tents`);
-    const snapshot = await tentRef.once('value');
-    snapshot.forEach(childSnapshot => {
-      const key = childSnapshot.key;
-      tentRef.child(key).update({ password: newPassword });
+    const updates = {};
+    Object.keys(tents).forEach(tentId => {
+      const newPassword = generateRandomPassword();
+      updates[`${tentId}/password`] = newPassword;
     });
 
-    res.status(200).json({ message: 'Passwords updated successfully' });
+    await tentRef.update(updates);
+
+    console.log('All tent passwords updated successfully');
+    res.status(200).json({ message: 'All tent passwords updated successfully' });
   } catch (error) {
-    console.error('Error updating passwords:', error);
+    console.error('Error updating all tent passwords:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 }
@@ -158,6 +170,6 @@ module.exports = {
   removeTent,
   getTotalTentCount, 
   getAllTents,
-  updatePassword,
+  updateTentPassword,
   updateAllPasswords
 };

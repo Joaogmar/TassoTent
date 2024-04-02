@@ -10,8 +10,7 @@ router.post('/createTent', tentController.createTent);
 router.delete('/removeTent', tentController.removeTent);
 router.get('/totalTentCount', tentController.getTotalTentCount); 
 router.get('/allTents', tentController.getAllTents);
-router.put('/updatePassword/:key', tentController.updatePassword);
+router.put('/updateTentPassword', tentController.updateTentPassword);
 router.put('/updateAllPasswords', tentController.updateAllPasswords);
-
 
 module.exports = router;
