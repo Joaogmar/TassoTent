@@ -1,5 +1,3 @@
-import { generateRandomPassword } from './src/utils.js';
-
 window.addEventListener('load', () => {
   populateTentTable();
   const updateAllPasswordsBtn = document.getElementById('updateAllPasswordsBtn');
