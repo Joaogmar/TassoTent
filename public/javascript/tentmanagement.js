@@ -95,6 +95,7 @@ async function updateAllPasswords() {
 
     if (response.ok) {
       console.log('All tent passwords updated successfully');
+      populateTentTable();
     } else {
       console.error('Failed to update all tent passwords:', response.statusText);
       // Handle update errors (e.g., display an error message to the user)
