@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tent Management</title>
     <link rel="stylesheet" href="stylesheets/tentmanagement.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
 </head>
+
 <body>
-    <img class="bck-image" src="img/bck-tm.png" alt="background">
-    <h1>Tent Management</h1>
-    <button id="updateAllPasswordsBtn">Update All Passwords</button> <table id="tentTable">
-        <thead>
-            <tr>
-                <th>Tent Name</th>
-                <th>Password</th>
-                <th id="actionHeader">Action</th> </tr>
-        </thead>
-        <tbody>
+    <div class="content-wrapper">
+        <img class="bck-image" src="img/bck-tm.png" alt="background">
+        <h1>Tent Management</h1>
+        <button class="button-all-passwords" id="updateAllPasswordsBtn">Update All Passwords</button>
+        <table id="tentTable">
+            <thead>
+                <tr>
+                    <th>Tent Name</th>
+                    <th>Password</th>
+                    <th id="actionHeader">Action</th>
+                </tr>
+            </thead>
+            <tbody>
             </tbody>
-    </table>
-    
+        </table>
+    </div>
+
     <script src="javascript/tentmanagement.js"></script>
 </body>
+
 </html>
