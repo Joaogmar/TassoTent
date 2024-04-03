@@ -30,9 +30,9 @@ body {
     height: 30vh;
     box-shadow: 0px 0px 0.1vh rgba(0, 0, 0, 0.5);
     font-family: 'Poppins',sans-serif;
-    opacity: 0; /* Define a opacidade inicial como 0 */
-    transform: scale(0.8); /* Define a escala inicial como 0.8 */
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Adiciona uma transição suave para opacity e transform */
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .login-content {
@@ -303,8 +303,8 @@ body {
     background-color: rgba(0, 0, 0, 0.5); 
     z-index: 999;
     display: none;
-    opacity: 0; /* Define a opacidade inicial como 0 */
-    transition: opacity 0.3s ease; /* Adiciona uma transição suave para opacity */
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .no-scroll {
@@ -314,7 +314,7 @@ body {
 }
 
 html {
-    scrollbar-width: none; /* Para Firefox */
+    scrollbar-width: none;
     margin: 0;
     padding: 0;
     overflow-y: scroll;
@@ -322,7 +322,7 @@ html {
 }
 
 body {
-    -ms-overflow-style: none; /* Para Internet Explorer 10+ */
+    -ms-overflow-style: none;
     overflow-y: scroll;
     overflow-x: hidden;
     margin: 0;

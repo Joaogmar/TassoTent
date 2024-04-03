@@ -10,9 +10,8 @@ async function populateTentTable() {
     if (response.ok) {
       const data = await response.json();
       const tentTableBody = document.querySelector('#tentTable tbody');
-      tentTableBody.innerHTML = ''; // Clear existing rows
+      tentTableBody.innerHTML = '';
       
-      // Extract tent IDs and sort them numerically
       const tentIds = Object.keys(data.tents);
       tentIds.sort((a, b) => {
         const idA = parseInt(a.match(/\d+/)[0]);
@@ -20,7 +19,6 @@ async function populateTentTable() {
         return idA - idB;
       });
       
-      // Populate the table rows using sorted tent IDs
       tentIds.forEach(tentId => {
         const tent = data.tents[tentId];
         const row = `
@@ -45,7 +43,7 @@ async function populateTentTable() {
 async function updateTentPassword(tentId) {
   try {
     const response = await fetch('/updateTentPassword', {
-      method: 'PUT', // Use PUT for updates
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -55,14 +53,12 @@ async function updateTentPassword(tentId) {
     if (response.ok) {
       const data = await response.json();
       console.log('Tent password updated successfully:', tentId);
-      return data.newPassword; // Return the new password from the response
+      return data.newPassword;
     } else {
       console.error('Failed to update tent password:', response.statusText);
-      // Handle update errors (e.g., display an error message to the user)
     }
   } catch (error) {
     console.error('Error updating tent password:', error);
-    // Handle update errors (e.g., display an error message to the user)
   }
 }
 
@@ -70,15 +66,13 @@ async function addGeneratePasswordEventListeners() {
   const generatePasswordButtons = document.querySelectorAll('.generate-password-btn');
   generatePasswordButtons.forEach(button => {
     button.addEventListener('click', async (event) => {
-      event.preventDefault(); // Prevent default form submission
+      event.preventDefault();
 
       const tentId = button.dataset.key;
       const passwordCell = document.getElementById(`password-${tentId}`);
 
-      // Generate a random password
       const newPassword = await updateTentPassword(tentId);
 
-      // Update the password display in the table
       passwordCell.textContent = newPassword;
     });
   });
@@ -87,7 +81,7 @@ async function addGeneratePasswordEventListeners() {
 async function updateAllPasswords() {
   try {
     const response = await fetch('/updateAllPasswords', {
-      method: 'PUT', // Use PUT for updates
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       }
@@ -98,10 +92,8 @@ async function updateAllPasswords() {
       populateTentTable();
     } else {
       console.error('Failed to update all tent passwords:', response.statusText);
-      // Handle update errors (e.g., display an error message to the user)
     }
   } catch (error) {
     console.error('Error updating all tent passwords:', error);
-    // Handle update errors (e.g., display an error message to the user)
   }
 }

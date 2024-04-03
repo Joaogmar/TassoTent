@@ -10,7 +10,7 @@ document.getElementById('createAdminForm').addEventListener('submit', async (eve
   try {
     console.log("Sending admin data:", adminData);
 
-    const response = await fetch('/admins', { // Changed endpoint to create admins
+    const response = await fetch('/admins', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
