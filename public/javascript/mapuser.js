@@ -106,7 +106,9 @@ function initMap() {
                     const request = {
                         origin: pos,
                         destination: tentLocation,
-                        travelMode: google.maps.TravelMode.DRIVING,
+                        travelMode: google.maps.TravelMode.WALKING,
+
+                        //TODO Consider adding way to change travel method
                     };
 
                     directionsService.route(request, function (result, status) {
