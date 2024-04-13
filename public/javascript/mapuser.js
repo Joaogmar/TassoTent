@@ -2,7 +2,7 @@
 
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 12,
+        zoom: 15,
         center: { lat: 38.48425, lng: -8.94301 },
         mapId: "4504f8b37365c3d0",
     });
@@ -57,47 +57,76 @@ function initMap() {
     });
 
     const locationButton = document.createElement("button");
+    const routeButton = document.createElement("button");
 
     locationButton.textContent = "Pan to Current Location";
     locationButton.classList.add("custom-map-control-button");
+
+    routeButton.textContent = "Route to my tent";
+    routeButton.classList.add("custom-map-control-button");
+
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-    locationButton.addEventListener("click", () => {
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                    };
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(routeButton);
+
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                };
+
+                locationButton.addEventListener("click", () => {
                     map.setCenter(pos);
+                });
 
-                    const userLocationMarker = new google.maps.marker.AdvancedMarkerView({
-                        map,
-                        position: pos,
-                        title: "Your Location",
-                        content: userMarker.element,
+                const userLocationMarker = new google.maps.marker.AdvancedMarkerView({
+                    map,
+                    position: pos,
+                    title: "Your Location",
+                    content: userMarker.element,
+                });
+
+                // Add a click listener for the user marker, and set up the info window.
+                userLocationMarker.addListener("click", ({ domEvent, latLng }) => {
+                    const { target } = domEvent;
+
+                    infoWindow.close();
+                    infoWindow.setContent(userLocationMarker.title);
+                    infoWindow.open(userLocationMarker.map, userLocationMarker);
+                });
+
+                routeButton.addEventListener("click", () => {
+                    // Calculate route to tent location and display on the map
+                    const directionsService = new google.maps.DirectionsService();
+                    const directionsRenderer = new google.maps.DirectionsRenderer();
+                    directionsRenderer.setMap(map);
+
+                    const request = {
+                        origin: pos,
+                        destination: tentLocation,
+                        travelMode: google.maps.TravelMode.DRIVING,
+                    };
+
+                    directionsService.route(request, function (result, status) {
+                        if (status == google.maps.DirectionsStatus.OK) {
+                            directionsRenderer.setDirections(result);
+                        } else {
+                            window.alert("Directions request failed due to " + status);
+                        }
                     });
+                });
 
-                    // Add a click listener for the user marker, and set up the info window.
-                    userLocationMarker.addListener("click", ({ domEvent, latLng }) => {
-                        const { target } = domEvent;
-
-                        infoWindow.close();
-                        infoWindow.setContent(userLocationMarker.title);
-                        infoWindow.open(userLocationMarker.map, userLocationMarker);
-                    });
-
-                },
-                () => {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                }
-            );
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-        }
-    });
+            },
+            () => {
+                handleLocationError(true, infoWindow, map.getCenter());
+            }
+        );
+    } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
