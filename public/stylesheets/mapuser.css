@@ -1,3 +1,23 @@
+.navbar {
+    background-color: #37776e;
+    overflow: hidden;
+}
+
+.nav-btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 1.4vh 1.6vh;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background-color: #FEF6CD;
+    color: black;
+}
+
 #map {
     height: 100%;
 }

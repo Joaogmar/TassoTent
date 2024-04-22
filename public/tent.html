@@ -10,16 +10,21 @@
             overflow: hidden;
         }
     </style>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"/>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
     <link rel="stylesheet" href="stylesheets/tent.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
 </head>
 
 <body>
+    <nav class="navbar">
+        <button class="nav-btn" onclick="window.location.href='start.html'">Home Page</button>
+        <button class="nav-btn" onclick="window.location.href='mapuser.html'">Map</button>
+        <button class="nav-btn">Chat</button>
+        <button class="nav-btn">Logout</button>
+    </nav>
     <div>
-        <a href="start.html">
-            <img class="t-logo" id="home" src="img/logotasso.png" alt="TassoLogo">
-        </a>
+        <img class="t-logo" id="home" src="img/logotasso.png" alt="TassoLogo">
         <img class="bck-image" src="img/bck-tent.png" alt="background">
         <button class="sett-button" id="settButton">
             <span class="material-symbols-outlined sett-icon">settings</span>
