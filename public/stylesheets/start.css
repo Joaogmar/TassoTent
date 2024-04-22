@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Poppins', sans-serif;
     overflow-y: scroll;
 }
 
@@ -23,16 +23,17 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-color: #3F8880; 
+    background-color: #3F8880;
     border-radius: 1.5vh;
     padding: 2vh;
     width: 35vh;
     height: 30vh;
     box-shadow: 0px 0px 0.1vh rgba(0, 0, 0, 0.5);
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Poppins', sans-serif;
     opacity: 0;
     transform: scale(0.8);
     transition: opacity 0.3s ease, transform 0.3s ease;
+    transform-style: preserve-3d; /* Adicione esta linha */
 }
 
 .login-content {
@@ -44,16 +45,12 @@ body {
     text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
 }
 
-.login-title {
-    margin-top: -0.2vh;
-}
-
 .login-content input[type="text"],
 .login-content input[type="password"] {
-    margin: 0 auto; 
+    margin: 0 auto;
     display: block;
     width: 25vh;
-    height: 2vh; 
+    height: 2vh;
     padding: 0.8vh;
     border: 0.1vh solid #f4f4f4;
     background-color: #9dc09d;
@@ -79,24 +76,24 @@ body {
     font-size: 1.6vh;
 }
 
-.login-button { 
+.login-button {
     padding: 0.1vh;
     border: none;
-    background-color: #9dc09d; 
-    color: #fff; 
+    background-color: #9dc09d;
+    color: #fff;
     border-radius: 0.3vh;
     cursor: pointer;
     display: block;
     margin: 0 auto;
     width: 10vh;
-    height: 4vh; 
+    height: 4vh;
     margin-top: 3vh;
     font-size: 1.5vh;
     text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
 }
 
 .login-button:hover {
-    background-color: #7c9c7c; 
+    background-color: #7c9c7c;
 }
 
 .close-login-popup {
@@ -108,15 +105,81 @@ body {
     top: 2vh;
     left: 2vh;
     border: none;
-    width: 4vh;
-    height: 3vh;
+    width: 3vh;
+    height: 2vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .close-login-popup-icon {
-    font-size: 2vh;
+    font-size: 1vh;
+}
+
+.close-login-popup:hover {
+    background-color:#7c9c7c
+}
+
+.switch-container {
+    position: absolute;
+    top: 2vh;
+    right: 2vh;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 4vh;
+    height: 2vh;
+}
+
+.switch-input {
+    display: none;
+}
+
+.switch-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4vh;
+    height: 2vh;
+    background-color: #dcdcdc;
+    border-radius: 1vh;
+    cursor: pointer;
+}
+
+.switch-label::after {
+    content: '';
+    display: block;
+    width: 1.6vh;
+    height: 1.6vh;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    top: 0.2vh;
+    left: 0.2vh;
+    transition: left 0.3s;
+}
+
+.switch-input:checked+.switch-label {
+    background-color: #9dc09d;
+}
+
+.switch-input:checked+.switch-label::after {
+    left: 2.2vh;
+}
+
+.login-popup.flip-horizontal {
+    animation: flipHorizontal 0.5s ease;
+}
+
+@keyframes flipHorizontal {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(180deg);
+    }
 }
 
 .container {
@@ -142,9 +205,9 @@ body {
 }
 
 .next-button {
-    padding: 0.8vh 1.6vh; 
+    padding: 0.8vh 1.6vh;
     font-size: 1.9vh;
-    width: 15vh; 
+    width: 15vh;
     height: 4.5vh;
     margin: 0 auto;
     font-weight: bold;
@@ -171,7 +234,7 @@ body {
 }
 
 .site-description h2 {
-    text-align: center; 
+    text-align: center;
     color: #ffffff;
     margin-top: 2vh;
     text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
@@ -188,22 +251,22 @@ body {
 }
 
 .site-description-box {
-    background-color: rgba(124, 156, 124, 0.8); 
+    background-color: rgba(124, 156, 124, 0.8);
     width: 80%;
-    margin: 5vh auto; 
+    margin: 5vh auto;
     padding: 2vh;
-    color: white; 
-    max-height: 40vh; 
+    color: white;
+    max-height: 40vh;
     overflow-y: auto;
     border-radius: 1.5vh;
     box-shadow: 0px 0px 1vh rgba(0, 0, 0, 0.5);
     border: 0.2vh solid #fff;
-    font-family: 'Poppins',sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin-top: 15vh;
 }
 
 .team-container {
-    background-color: rgba(124, 156, 124, 0.8); 
+    background-color: rgba(124, 156, 124, 0.8);
     padding: 5vh;
     text-align: center;
     margin-top: 15vh;
@@ -242,7 +305,7 @@ body {
     height: 13vh;
     border-radius: 50%;
     object-fit: cover;
-    border: none; 
+    border: none;
     transition: transform 0.3s ease;
     box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.3);
 }
@@ -258,14 +321,14 @@ body {
 }
 
 .team-container h2 {
-    color:#fff;
+    color: #fff;
     margin-top: -2vh;
     text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
     font-size: 2.5vh;
 }
 
 .contact-container {
-    background-color: rgba(124, 156, 124, 0.8); 
+    background-color: rgba(124, 156, 124, 0.8);
     padding: 3vh;
     text-align: center;
     margin-top: 6vh;
@@ -300,7 +363,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
     display: none;
     opacity: 0;

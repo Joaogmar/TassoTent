@@ -41,3 +41,20 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener('DOMContentLoaded', function () {
     const bodyScroll = new PerfectScrollbar('body');
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    var switchInput = document.getElementById("switch");
+    var loginPopup = document.getElementById("loginPopup");
+    var loginTitle = document.querySelector(".login-title");
+
+    switchInput.addEventListener("change", function() {
+        loginPopup.classList.add("flip-horizontal");
+        setTimeout(function() {
+            if (switchInput.checked) {
+                loginTitle.innerText = "Login as Admin";
+            } else {
+                loginTitle.innerText = "Login as User";
+            }
+        }, 500); // ajuste o tempo conforme necessário
+    });        
+});

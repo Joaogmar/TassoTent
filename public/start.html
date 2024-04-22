@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tasso</title>
     <link rel="stylesheet" href="stylesheets/start.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.2/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.2/css/perfect-scrollbar.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.2/perfect-scrollbar.min.js"></script>
 </head>
 
@@ -16,7 +18,7 @@
     <div class="overlay" id="overlay"></div>
     <div class="login-popup" id="loginPopup">
         <div class="login-content" id="loginContent">
-            <h2 class="login-title">Login</h2>
+            <h2 class="login-title" id="loginTitle">Login as User</h2>
             <form id="login-form" action="/dashboard.html" method="GET">
                 <div class="form-group-username">
                     <label class="form-group-text" for="username">Username:</label>
@@ -32,6 +34,12 @@
         <button class="close-login-popup" id="closeModal">
             <span class="material-symbols-outlined close-login-popup-icon">arrow_left_alt</span>
         </button>
+        <div class="switch-container">
+            <div class="switch">
+                <input type="checkbox" id="switch" class="switch-input">
+                <label for="switch" class="switch-label"></label>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -45,7 +53,8 @@
         <div class="site-description">
             <h2>Conheça a Tasso Tent</h2>
             <p class="site-description-bv">Bem-vindo!</p>
-            <p class="site-description-text">Poderás aceder e utilizar os nossos equipamentos IoT, além de obter informações detalhadas sobre os
+            <p class="site-description-text">Poderás aceder e utilizar os nossos equipamentos IoT, além de obter
+                informações detalhadas sobre os
                 mesmos. Explore as nossas soluções inovadoras, tire dúvidas e descubra como as nossas tecnologias podem
                 transformar a sua experiência em festivais.</p>
             <p class="site-description-text">Estamos aqui para ajudá-lo a aproveitar ao máximo cada momento</p>
