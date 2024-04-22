@@ -11,6 +11,30 @@ body {
   background-size: cover;
 }
 
+.navbar {
+  background-color: #37776e;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.nav-btn {
+  background-color: transparent;
+  border: none;
+  color: white;
+  padding: 1.4vh 1.6vh;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-btn:hover {
+  background-color: #FEF6CD;
+  color: black;
+}
+
 .content-wrapper {
   position: fixed;
   top: 0;
@@ -18,6 +42,8 @@ body {
   width: 100%;
   height: 100%;
   overflow-y: auto;
+  margin-top: 5vh;
+  padding-top: 2vh;
 }
 
 .bck-image {
@@ -30,63 +56,10 @@ body {
   z-index: -1;
 }
 
-.logo-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-top: 1.4vh;
-  margin-right: 1vh;
-}
-
-.t-logo {
-  width: 7vh;
-  height: auto;
-}
-
-.dashboard-button {
-  position: absolute;
-  top: 3.2vh;
-  right: 11vh;
-  padding: 0.7vh 1.7vh;
-  background-color: #3F8880;
-  color: #FAFCFE;
-  border: none;
-  border-radius: 0.5vh;
-  cursor: pointer;
-  font-size: 1.6vh;
-  box-shadow: 0 4vh 6vh rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 0 1vh rgba(0, 0, 0, 0.4);
-  text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
-}
-
-.dashboard-button:hover {
-  background-color: #37776e;
-}
-
-.start-button {
-  position: absolute;
-  top: 3.2vh;
-  right: 25.5vh;
-  padding: 0.7vh 1.7vh;
-  background-color: #3F8880;
-  color: #FAFCFE;
-  border: none;
-  border-radius: 0.5vh;
-  cursor: pointer;
-  font-size: 1.6vh;
-  box-shadow: 0 4vh 6vh rgba(0, 0, 0, 0.2);
-  box-shadow: inset 0 0 1vh rgba(0, 0, 0, 0.4);
-  text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
-}
-
-.start-button:hover {
-  background-color: #37776e;
-}
-
 h1 {
   margin-bottom: 3vh;
   color: #fffae4;
-  margin-left: 2vh;
+  margin-left: 4vh;
   margin-top: 3vh;
   text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
   font-size: 3.5vh;
@@ -95,7 +68,7 @@ h1 {
 .table-container {
   width: 95%;
   margin: auto;
-  max-height: 80vh;
+  max-height: 70vh;
   overflow-y: auto;
   border-radius: 8px;
   background-color: #FEF6CD;
@@ -167,7 +140,7 @@ tbody tr:hover {
   text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
   box-shadow: 0 4vh 6vh rgba(0, 0, 0, 0.2);
   box-shadow: inset 0 0 0.5vh rgba(0, 0, 0, 0.4);
-  margin-top: 2.2vh;
+  margin-top: 3vh;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -187,49 +160,12 @@ tbody tr:hover {
     overflow-x: auto;
   }
 
-  .t-logo {
-    width: 6vh;
-    height: auto;
-  }
-
   h1 {
     margin-bottom: 3vh;
     color: #fffae4;
     margin-left: 2vh;
-    margin-top: 3vh;
+    margin-top: 2.2vh;
     text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
     font-size: 2.2vh;
   }
-
-  .dashboard-button {
-    position: absolute;
-    top: 3.2vh;
-    right: 7.5vh;
-    padding: 0.7vh 1.7vh;
-    background-color: #3F8880;
-    color: #FAFCFE;
-    border: none;
-    border-radius: 0.5vh;
-    cursor: pointer;
-    font-size: 1vh;
-    box-shadow: 0 4vh 6vh rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 0 1vh rgba(0, 0, 0, 0.4);
-    text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
-  }
-
-  .start-button {
-    position: absolute;
-    top: 3.2vh;
-    right: 16vh;
-    padding: 0.7vh 1.7vh;
-    background-color: #3F8880;
-    color: #FAFCFE;
-    border: none;
-    border-radius: 0.5vh;
-    cursor: pointer;
-    font-size: 1vh;
-    box-shadow: 0 4vh 6vh rgba(0, 0, 0, 0.2);
-    box-shadow: inset 0 0 1vh rgba(0, 0, 0, 0.4);
-    text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
-  } 
 }
