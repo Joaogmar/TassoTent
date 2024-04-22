@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     closeModalButton.addEventListener("click", function() {
         loginPopup.style.opacity = "0";
-        loginPopup.style.transform = "scale(0.8) translate(-50%, -50%)";
         overlay.style.opacity = "0";
         setTimeout(function() {
             loginPopup.style.display = "none";
@@ -28,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     overlay.addEventListener("click", function() {
         loginPopup.style.opacity = "0";
-        loginPopup.style.transform = "scale(0.8) translate(-50%, -50%)";
         overlay.style.opacity = "0";
         setTimeout(function() {
             loginPopup.style.display = "none";
@@ -36,25 +34,20 @@ document.addEventListener("DOMContentLoaded", function() {
             document.body.classList.remove("no-scroll");
         }, 300);
     });
+
+    var switchInput = document.getElementById("switch");
+    var loginTitle = document.querySelector(".login-title");
+
+    switchInput.addEventListener("change", function() {
+
+        if (switchInput.checked) {
+            loginTitle.innerText = "Login as Admin";
+        } else {
+            loginTitle.innerText = "Login as User";
+        }
+    });
 });
 
 document.addEventListener('DOMContentLoaded', function () {
     const bodyScroll = new PerfectScrollbar('body');
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    var switchInput = document.getElementById("switch");
-    var loginPopup = document.getElementById("loginPopup");
-    var loginTitle = document.querySelector(".login-title");
-
-    switchInput.addEventListener("change", function() {
-        loginPopup.classList.add("flip-horizontal");
-        setTimeout(function() {
-            if (switchInput.checked) {
-                loginTitle.innerText = "Login as Admin";
-            } else {
-                loginTitle.innerText = "Login as User";
-            }
-        }, 500); // ajuste o tempo conforme necessário
-    });        
 });

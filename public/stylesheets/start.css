@@ -31,17 +31,13 @@ body {
     box-shadow: 0px 0px 0.1vh rgba(0, 0, 0, 0.5);
     font-family: 'Poppins', sans-serif;
     opacity: 0;
-    transform: scale(0.8);
     transition: opacity 0.3s ease, transform 0.3s ease;
-    transform-style: preserve-3d; /* Adicione esta linha */
 }
 
 .login-content {
     text-align: center;
     color: #fff;
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
     text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
 }
 
@@ -167,19 +163,6 @@ body {
 
 .switch-input:checked+.switch-label::after {
     left: 2.2vh;
-}
-
-.login-popup.flip-horizontal {
-    animation: flipHorizontal 0.5s ease;
-}
-
-@keyframes flipHorizontal {
-    from {
-        transform: rotateY(0deg);
-    }
-    to {
-        transform: rotateY(180deg);
-    }
 }
 
 .container {
