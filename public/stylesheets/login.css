@@ -93,6 +93,8 @@
     position: absolute;
 }
 
+/* localizaçao das caixas de login e register que depois sao movidas */
+
 #login{
     left: 50px;
 }
