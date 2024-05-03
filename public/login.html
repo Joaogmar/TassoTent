@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Login and Registration Form</title>
+        <link rel="stylesheet" href="stylesheets/login.css">
+    </head>
+
+    <body>
+        <div class="hero"> <!-- fundo da página -->
+            <div class="form-box"> <!-- caixa onde esta o login e o register -->
+                <div class="button-box">
+                    <div id="btn"></div>
+                    <button type="button" class="toggle-btn" onclick="login()">Login</button>
+                    <button type="button" class="toggle-btn" onclick="register()">Register</button>
+                </div>
+                <form id="login" class="input-group">
+                    <input type="text" class="input-field" placeholder="Username" required>
+                    <input type="text" class="input-field" placeholder="Password" required>
+                    <input type="checkbox" class="check-box"><span>Remember Password</span>
+                    <button type="submit" class="submit-btn">Login</button>
+                </form> 
+                <form id="register" class="input-group">
+                    <input type="text" class="input-field" placeholder="Username" required>
+                    <input type="email" class="input-field" placeholder="Email" required>
+                    <input type="text" class="input-field" placeholder="Password" required>
+                    <input type="checkbox" class="check-box"><span>I agree to the terms and conditions</span>
+                    <button type="submit" class="submit-btn">Register</button>
+                </form> 
+            </div>
+        </div>
+
+        <script>
+ 
+            /*isto e super pedreiro mas é capaz de funcionar
+            essesncialmente ambas as forms estao na pagina e simplesmente sao mexidas para a esquerda ou direita
+            depois a formbox tem o overflow hidden que e para as ocultar quando saem para fora dela */
+            
+            var x = document.getElementById("login");
+            var y = document.getElementById("register");
+            var z = document.getElementById("btn");
+
+            function register(){
+                x.style.left = "-400px";
+                y.style.left = "50px";
+                z.style.left = "110px";
+            }
+            function login(){
+                x.style.left = "50px";
+                y.style.left = "450px";
+                z.style.left = "0px";
+            }
+        </script>
+
+    </body>
+
+</html>
