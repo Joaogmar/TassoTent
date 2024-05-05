@@ -87,7 +87,7 @@ body {
 }
 
 .input-group-reg {
-    top: 17vh;
+    top: 18vh;
     position: absolute;
     width: 30vh;
     transition: .5s;
@@ -142,6 +142,7 @@ body {
     border: 0;
     outline: none;
     border-radius: 3vh;
+    margin-top: 3vh;
 }
 
 .check-box {
