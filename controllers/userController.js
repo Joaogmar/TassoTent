@@ -7,49 +7,6 @@ const hashPassword = async (password) => {
     return bcrypt.hash(password, saltRounds);
 };
 
-const loginUser = async (req, res) => {
-    console.log('Login route reached');
-    console.log('Request payload:', req.body); // Log request payload
-    try {
-        const { username, password } = req.body;
-
-        if (!username || !password) {
-            return res.status(400).json({ status: 'error', message: 'Username and password are required' });
-        }
-
-        // Retrieve user data by username from Realtime Database
-        const userRef = admin.database().ref(`users/${username}`);
-        const userSnapshot = await userRef.once('value');
-
-        if (!userSnapshot.exists()) {
-            return res.status(401).json({ status: 'error', message: 'Invalid username or password' });
-        }
-
-        const userData = userSnapshot.val();
-
-        // Verify password hash using bcrypt
-        const hashedPassword = userData.password;
-
-        let passwordMatch;
-        try {
-            passwordMatch = await bcrypt.compare(password, hashedPassword);
-        } catch (error) {
-            console.error('Error comparing passwords:', error);
-            throw error;
-        }
-
-        if (passwordMatch) {
-            const role = userData.role;
-            return res.status(200).json({ status: 'success', role });
-        } else {
-            return res.status(401).json({ status: 'error', message: 'Invalid username or password' });
-        }
-    } catch (error) {
-        console.error('Login error:', error);
-        res.status(500).json({ status: 'error', message: 'Internal server error' });
-    }
-};
-
 const createAdmin = async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -76,4 +33,45 @@ const createAdmin = async (req, res) => {
     }
 };
 
-module.exports = { createAdmin, loginUser };
+const adminLogin = async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        if (!username || !password) {
+            return res.status(400).json({ error: 'Username and password are required' });
+        }
+
+        // Access the 'admins' node and find the admin by username
+        const adminRef = admin.database().ref('users/admins').child(username);
+        const snapshot = await adminRef.once('value');
+        const adminData = snapshot.val();
+
+        // Check if the admin exists
+        if (!adminData) {
+            return res.status(401).json({ error: 'Invalid username or password' });
+        }
+
+        // Compare the provided password with the hashed password stored in the database
+        const isPasswordMatch = await bcrypt.compare(password, adminData.password);
+
+        if (isPasswordMatch) {
+            // Passwords match, proceed with login
+            req.session.user = {
+                username: adminData.username,
+                role: 'admin'
+            };
+            return res.status(200).json({ message: 'Admin login successful' });
+        } else {
+            // Passwords do not match
+            return res.status(401).json({ error: 'Invalid username or password' });
+        }
+    } catch (error) {
+        console.error('Error during admin login:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
+
+module.exports = {
+    createAdmin,
+    adminLogin, 
+};

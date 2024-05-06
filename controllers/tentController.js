@@ -168,8 +168,30 @@ async function updateAllPasswords(req, res) {
   }
 }
 
+async function tentLogin(req, res) {
+  const { username, password } = req.body;
+
+  // Perform authentication with your database (e.g., Firebase)
+  const tentRef = admin.database().ref('users/tents');
+  const snapshot = await tentRef.orderByChild('username').equalTo(username).once('value');
+  const tentData = snapshot.val();
+
+  // Check if the user exists and the password is correct
+  if (tentData && tentData[Object.keys(tentData)[0]].password === password) {
+      // Store tent information in the session
+      req.session.user = {
+          username: tentData[Object.keys(tentData)[0]].username,
+          role: 'tent' // Indicate the user's role
+      };
+      res.status(200).json({ message: 'Tent login successful' });
+  } else {
+      res.status(401).json({ error: 'Invalid username or password' });
+  }
+}
+
 module.exports = {
   createTent,
+  tentLogin,
   removeTent,
   getTotalTentCount, 
   getAllTents,

@@ -1,11 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
-const { createAdmin , loginUser } = require('../controllers/userController');
+const userController = require('../controllers/userController');
 const tentController = require('../controllers/tentController');
 
-router.post('/admins', createAdmin);
-router.post('/login', loginUser);
+router.post('/admins', userController.createAdmin);
+router.post('/login/admin', userController.adminLogin);
+router.post('/login/tent', tentController.tentLogin);
 router.post('/createTent', tentController.createTent);
 router.delete('/removeTent', tentController.removeTent);
 router.get('/totalTentCount', tentController.getTotalTentCount); 
