@@ -71,7 +71,31 @@ const adminLogin = async (req, res) => {
     }
 };
 
+const logout = (req, res) => {
+    // Destroy the session to log the user out
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Error logging out:', err);
+            return res.status(500).json({ error: 'Failed to log out' });
+        }
+        // Successfully logged out
+        res.json({ message: 'Logged out successfully' });
+    });
+};
+
+const getAdminUsername = (req, res) => {
+    if (req.session.user && req.session.user.role === 'admin') {
+        // Return the admin's username
+        return res.json({ username: req.session.user.username });
+    } else {
+        // Return an error if the user is not authorized
+        return res.status(403).json({ error: 'Unauthorized' });
+    }
+};
+
 module.exports = {
     createAdmin,
-    adminLogin, 
+    adminLogin,
+    logout,
+    getAdminUsername,
 };

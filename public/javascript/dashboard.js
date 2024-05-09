@@ -95,4 +95,45 @@ async function displayTotalTentCount() {
   }
 } 
 
-window.addEventListener('load', displayTotalTentCount);
+async function displayAdminUsername() {
+  try {
+      const response = await fetch('/getAdminUsername'); // Assuming this endpoint returns the admin's username
+      if (response.ok) {
+          const data = await response.json();
+          const adminUsername = data.username;
+          document.getElementById('adminUsername').innerText = adminUsername;
+      } else {
+          console.error('Failed to fetch admin username:', response.statusText);
+      }
+  } catch (error) {
+      console.error('Error fetching admin username:', error);
+  }
+}
+
+// Call the function on page load
+window.addEventListener('load', () => {
+  displayTotalTentCount();
+  displayAdminUsername(); // Display the admin's username
+});
+
+// Event listener for logout button
+document.querySelector('.nav-btn:last-of-type').addEventListener('click', async () => {
+  try {
+      const response = await fetch('/logout', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+      });
+
+      if (response.ok) {
+          console.log('Logged out successfully');
+          // Redirect to home page or login page
+          window.location.href = 'start.html'; // Redirect to start.html after logout
+      } else {
+          console.error('Failed to log out:', response.statusText);
+      }
+  } catch (error) {
+      console.error('Error logging out:', error);
+  }
+});

@@ -7,6 +7,8 @@ const tentController = require('../controllers/tentController');
 router.post('/admins', userController.createAdmin);
 router.post('/login/admin', userController.adminLogin);
 router.post('/login/tent', tentController.tentLogin);
+router.get('/getAdminUsername', userController.getAdminUsername);
+router.post('/logout', userController.logout);
 router.post('/createTent', tentController.createTent);
 router.delete('/removeTent', tentController.removeTent);
 router.get('/totalTentCount', tentController.getTotalTentCount); 
