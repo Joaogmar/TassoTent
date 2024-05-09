@@ -23,20 +23,20 @@
                 <button type="button" class="toggle-btn-lg" onclick="login()">Tent</button>
                 <button type="button" class="toggle-btn-reg" onclick="register()">Admin</button>
             </div>
-            <form id="login" class="input-group-lg">
-                <input type="text" class="input-field-lg" placeholder="Username" required>
-                <input type="text" class="input-field-lg" placeholder="Password" required>
+            <form id="login" class="input-group-lg" onsubmit="handleTentLogin(event)">
+                <input type="text" id="tentUsername" name="username" class="input-field-lg" placeholder="Username" required>
+                <input type="password" id="tentPassword" name="password" class="input-field-lg" placeholder="Password" required>
                 <button type="submit" class="submit-btn-lg">Login</button>
-            </form>
-            <form id="register" class="input-group-reg">
-                <input type="text" class="input-field-reg" placeholder="Username" required>
-                <input type="text" class="input-field-reg" placeholder="Password" required>
+            </form>            
+            <form id="register" class="input-group-reg" onsubmit="handleAdminLogin(event)">
+                <input type="text" id="adminUsername" name="username" class="input-field-reg" placeholder="Username" required>
+                <input type="password" id="adminPassword" name="password" class="input-field-reg" placeholder="Password" required>
                 <button type="submit" class="submit-btn-reg">Login</button>
             </form>
             <script>
 
                 /*isto e super pedreiro mas é capaz de funcionar
-                essesncialmente ambas as forms estao na pagina e simplesmente sao mexidas para a esquerda ou direita
+                essencialmente ambas as forms estao na pagina e simplesmente sao mexidas para a esquerda ou direita
                 depois a formbox tem o overflow hidden que e para as ocultar quando saem para fora dela */
 
                 var x = document.getElementById("login");

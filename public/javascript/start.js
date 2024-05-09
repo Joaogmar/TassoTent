@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     var nextButton = document.getElementById("nextButton");
     var loginPopup = document.getElementById("loginPopup");
-    var closeModalButton = document.getElementById("closeModal");
     var overlay = document.getElementById("overlay");
 
     nextButton.addEventListener("click", function() {
@@ -13,16 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
             loginPopup.style.transform = "scale(1) translate(-50%, -50%)";
             overlay.style.opacity = "1";
         }, 10);
-    });
-
-    closeModalButton.addEventListener("click", function() {
-        loginPopup.style.opacity = "0";
-        overlay.style.opacity = "0";
-        setTimeout(function() {
-            loginPopup.style.display = "none";
-            overlay.style.display = "none";
-            document.body.classList.remove("no-scroll");
-        }, 300);
     });
 
     overlay.addEventListener("click", function() {
@@ -67,26 +56,31 @@ function handleTentLogin(event) {
         },
         body: JSON.stringify({ username, password }),
     })
-    .then(response => response.json())
+    .then(response => {
+        console.log("Received response:", response);
+        return response.json();
+    })
     .then(data => {
-        if (data.success) {
-            // Login successful
+        console.log("Received data:", data);
+
+        // Check for success message
+        if (data.message === 'Tent login successful') {
+            console.log("Tent login successful. Redirecting to tent.html...");
             // Redirect to tent.html
             window.location.href = 'tent.html';
-        } else if (data.error) {
-            // Display the error message
-            console.error(data.error);
-            alert(data.error);
+        } else {
+            // Handle unexpected or error response
+            console.error("Unexpected or error response:", data);
+            alert(data.message || 'An unexpected error occurred during the login process.');
         }
     })
     .catch(error => {
         // Handle fetch error
-        console.error('Error:', error);
+        console.error("Error during fetch:", error);
         alert('An error occurred during the login process.');
     });
 }
 
-// Function to handle admin login
 function handleAdminLogin(event) {
     event.preventDefault(); // Prevent the form from submitting the default way
 
@@ -102,21 +96,30 @@ function handleAdminLogin(event) {
         },
         body: JSON.stringify({ username, password }),
     })
-    .then(response => response.json())
+    .then(response => {
+        console.log("Received response:", response);
+        // Check if the response is okay
+        if (!response.ok) {
+            console.error('Server responded with an error:', response.statusText);
+            alert('Login failed: ' + response.statusText);
+            return;
+        }
+        return response.json();
+    })
     .then(data => {
-        if (data.success) {
+        console.log("Received data:", data);
+        if (data && data.message === 'Admin login successful') {
             // Login successful
-            // Redirect to dashboard.html
+            console.log("Login successful, redirecting to dashboard.html");
             window.location.href = 'dashboard.html';
-        } else if (data.error) {
-            // Display the error message
-            console.error(data.error);
-            alert(data.error);
+        } else {
+            console.error("Unexpected response data:", data);
+            alert('Unexpected response received: ' + JSON.stringify(data));
         }
     })
     .catch(error => {
         // Handle fetch error
-        console.error('Error:', error);
+        console.error('Fetch error:', error);
         alert('An error occurred during the login process.');
     });
 }
