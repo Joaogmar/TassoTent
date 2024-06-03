@@ -1,5 +1,29 @@
 //!DONT REMOVE COMMENTS
 
+async function fetchWeatherData(lat, lng) {
+    const apiKey = '0e8814803871411c979143439240306';
+    const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat},${lng}`;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const weatherData = await response.json();
+
+        const windData = {
+            speed_kph: weatherData.current.wind_kph,
+            direction_degrees: weatherData.current.wind_degree,
+            direction_compass: weatherData.current.wind_dir
+        };
+
+        return { ...weatherData, wind: windData };
+    } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+        return null;
+    }
+}
+
+
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 15,
@@ -48,11 +72,33 @@ function initMap() {
     });
 
     // Add a click listener for the tent marker, and set up the info window.
-    tentLocationMarker.addListener("click", ({ domEvent, latLng }) => {
+    tentLocationMarker.addListener("click", async ({ domEvent, latLng }) => {
         const { target } = domEvent;
-
+    
         infoWindow.close();
-        infoWindow.setContent(tentLocationMarker.title);
+    
+        // Fetch weather data for the tent location
+        const weatherData = await fetchWeatherData(tentLocation.lat, tentLocation.lng);
+        let weatherContent = 'Unable to fetch weather data';
+        if (weatherData) {
+            const arrowRotation = `transform: rotate(${weatherData.wind.direction_degrees}deg);`;
+            weatherContent = `
+                <div class="info-window-content">
+                    <div><strong>Your Tent</strong></div>
+                    <div class="weather">
+                        <div><strong>Weather:</strong> ${weatherData.current.condition.text}</div>
+                        <div><strong>Temperature:</strong> ${weatherData.current.temp_c}°C</div>
+                        <div><strong>Humidity:</strong> ${weatherData.current.humidity}%</div>
+                        <div><strong>Wind Speed:</strong> ${weatherData.wind.speed_kph} kph</div>
+                        <div><strong>Wind Direction:</strong> ${weatherData.wind.direction_compass}
+                            <span class="wind-arrow" style="${arrowRotation}">&#x27a4;</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    
+        infoWindow.setContent(weatherContent);
         infoWindow.open(tentLocationMarker.map, tentLocationMarker);
     });
 

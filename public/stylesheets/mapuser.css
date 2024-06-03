@@ -28,3 +28,10 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.wind-arrow {
+    font-size: 20px;
+    color: #37776e; 
+    vertical-align: middle;
+    margin-left: 5px;
+}

@@ -46,16 +46,13 @@ const adminLogin = async (req, res) => {
         const snapshot = await adminRef.once('value');
         const adminData = snapshot.val();
 
-        // Check if the admin exists
         if (!adminData) {
             return res.status(401).json({ error: 'Invalid username or password' });
         }
 
-        // Compare the provided password with the hashed password stored in the database
         const isPasswordMatch = await bcrypt.compare(password, adminData.password);
 
         if (isPasswordMatch) {
-            // Passwords match, proceed with login
             req.session.user = {
                 username: adminData.username,
                 role: 'admin'
