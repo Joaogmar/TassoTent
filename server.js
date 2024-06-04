@@ -26,6 +26,24 @@ app.get('/', (req, res) => {
 
 app.use('/', routes);
 
+app.use((req, res, next) => {
+    console.log(`Incoming Request URL: ${req.url}`);
+    console.log('Headers:', req.headers);
+    console.log('Body:', req.body);
+    next();
+});
+
+app.post('/sensorData', (req, res) => {
+    const sensorData = req.body;
+    const temperature = sensorData.temperature;
+    const humidity = sensorData.humidity;
+    const gpsData = sensorData.gpsData;
+  
+    console.log(`Received sensor data: ${temperature}, ${humidity}, ${gpsData}`);
+  
+    res.status(200).send('OK');
+  });
+
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
 });
