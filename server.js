@@ -17,7 +17,7 @@ app.use(session({
     secret: 'your-secret-key', 
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 86400000 } // Session expiration 1 day
+    cookie: { maxAge: 86400000 } 
 }));
 
 app.get('/', (req, res) => {
@@ -33,16 +33,29 @@ app.use((req, res, next) => {
     next();
 });
 
+let sensorDataStorage = [];
+
 app.post('/sensorData', (req, res) => {
     const sensorData = req.body;
     const temperature = sensorData.temperature;
     const humidity = sensorData.humidity;
     const gpsData = sensorData.gpsData;
   
-    console.log(`Received sensor data: ${temperature}, ${humidity}, ${gpsData}`);
-  
+    console.log(`Received sensor data: ${temperature}, ${humidity}, ${gpsData.latitude}, ${gpsData.longitude}`);
+
+    
+    sensorDataStorage.push({
+        temperature,
+        humidity,
+        gpsData
+    });
+
     res.status(200).send('OK');
-  });
+});
+
+app.get('/sensorData', (req, res) => {
+    res.status(200).json(sensorDataStorage);
+});
 
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
