@@ -39,14 +39,19 @@ app.post('/sensorData', (req, res) => {
     const sensorData = req.body;
     const temperature = sensorData.temperature;
     const humidity = sensorData.humidity;
+    const motionDetected = sensorData.motionDetected;
+    const gasValue = sensorData.gasValue;
     const gpsData = sensorData.gpsData;
   
-    console.log(`Received sensor data: ${temperature}, ${humidity}, ${gpsData.latitude}, ${gpsData.longitude}`);
+    const gasDescription = gasValue >= 700 ? 'Gás tóxico detectado' : 'Gás não detectado';
+  
+    console.log(`Received sensor data: temperature: ${temperature}, humidity: ${humidity}, motionDetected: ${motionDetected}, gasDescription: ${gasDescription}, gpsData: ${gpsData.latitude}, ${gpsData.longitude}`);
 
-    
     sensorDataStorage.push({
         temperature,
         humidity,
+        motionDetected,
+        gasDescription,
         gpsData
     });
 
