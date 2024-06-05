@@ -43,7 +43,7 @@ app.post('/sensorData', (req, res) => {
     const gasValue = sensorData.gasValue;
     const gpsData = sensorData.gpsData;
   
-    const gasDescription = gasValue >= 700 ? 'Gás tóxico detectado' : 'Gás não detectado';
+    const gasDescription = gasValue >= 800 ? 'Gás tóxico detectado' : 'Gás não detectado';
   
     console.log(`Received sensor data: temperature: ${temperature}, humidity: ${humidity}, motionDetected: ${motionDetected}, gasDescription: ${gasDescription}, gpsData: ${gpsData.latitude}, ${gpsData.longitude}`);
 
