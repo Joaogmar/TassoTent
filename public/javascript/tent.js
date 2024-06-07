@@ -25,8 +25,8 @@ document.getElementById('fan-button').addEventListener('click', function () {
 
 // Function to open the settings popup
 function openSettingsPopup() {
-    const popup = document.getElementById('settPopup');
-    const overlay = document.getElementById('settOverlay');
+    const popup = document.getElementById('updatePopup');
+    const overlay = document.getElementById('updateOverlay');
     popup.style.display = 'block';
     popup.classList.remove('hide');
     overlay.style.display = 'block';
@@ -36,17 +36,17 @@ function openSettingsPopup() {
 document.getElementById('settButton').addEventListener('click', openSettingsPopup);
 
 // Event listener for closing the settings popup
-document.getElementById('closeSett').addEventListener('click', function () {
-    const popup = document.getElementById('settPopup');
-    const overlay = document.getElementById('settOverlay');
+document.getElementById('closeUpdate').addEventListener('click', function () {
+    const popup = document.getElementById('updatePopup');
+    const overlay = document.getElementById('updateOverlay');
     popup.classList.add('hide');
     overlay.style.display = 'none';
 });
 
 // Event listener for closing the settings popup when overlay is clicked
-document.getElementById('settOverlay').addEventListener('click', function (event) {
-    const popup = document.getElementById('settPopup');
-    const overlay = document.getElementById('settOverlay');
+document.getElementById('updateOverlay').addEventListener('click', function (event) {
+    const popup = document.getElementById('updatePopup');
+    const overlay = document.getElementById('updateOverlay');
     if (event.target === overlay) {
         popup.classList.add('hide');
         overlay.style.display = 'none';
@@ -54,11 +54,23 @@ document.getElementById('settOverlay').addEventListener('click', function (event
 });
 
 // Event listener for hiding the popup when animation ends
-document.getElementById('settPopup').addEventListener('animationend', function (event) {
+document.getElementById('updatePopup').addEventListener('animationend', function (event) {
     if (event.animationName === 'slideOut') {
         this.style.display = 'none';
     }
 });
+
+function togglePasswordVisibility() {
+    var passwordInput = document.getElementById('userNewPassword');
+    var passwordIcon = document.querySelector('.toggle-password span');
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        passwordIcon.textContent = 'visibility_off';
+    } else {
+        passwordInput.type = 'password';
+        passwordIcon.textContent = 'visibility';
+    }
+}
 
 // Function to handle logout
 async function handleLogout() {

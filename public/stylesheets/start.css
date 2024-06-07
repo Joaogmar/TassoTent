@@ -26,8 +26,10 @@ body {
     background-color: #3F8880;
     border-radius: 1.5vh;
     padding: 2vh;
-    width: 38vh;
-    height: 45vh;
+    width: 50%;
+    max-width: 38vh;
+    height: 60%;
+    max-height: 40vh;
     box-shadow: 0px 0px 0.1vh rgba(0, 0, 0, 0.5);
     font-family: 'Poppins', sans-serif;
     opacity: 0;
@@ -40,12 +42,11 @@ body {
 }
 
 .button-box {
-    width: 22.5vh;
-    margin: 3.5vh auto;
+    width: 22vh;
+    margin: 3vh auto;
     position: relative;
     box-shadow: 0 0 2vh 0.9vh #0000001f;
     border-radius: 3vh;
-    margin-left: 6vh;
 }
 
 .toggle-btn-lg {
@@ -72,7 +73,7 @@ body {
     top: 0;
     left: 0;
     position: absolute;
-    width: 11.5vh;
+    width: 11vh;
     height: 100%;
     background: linear-gradient(to right, #A69F7C, #FEF6CD);
     border-radius: 3vh;
@@ -84,6 +85,7 @@ body {
     position: absolute;
     width: 30vh;
     transition: .5s;
+    margin-left: 1vh;
 }
 
 .input-group-reg {
@@ -91,6 +93,7 @@ body {
     position: absolute;
     width: 30vh;
     transition: .5s;
+    margin-left: 1vh;
 }
 
 .input-field-lg {
@@ -119,6 +122,14 @@ body {
     color: #FEF6CD;
 }
 
+.input-field-lg::placeholder {
+    color: #FFFFFF;
+}
+
+.input-field-reg::placeholder {
+    color: #FFFFFF;
+}
+
 .submit-btn-lg {
     width: 85%;
     padding: 1vh 3vh;
@@ -129,7 +140,7 @@ body {
     border: 0;
     outline: none;
     border-radius: 3vh;
-    margin-top: 3vh;
+    margin-top: 6vh;
 }
 
 .submit-btn-reg {
@@ -142,7 +153,7 @@ body {
     border: 0;
     outline: none;
     border-radius: 3vh;
-    margin-top: 3vh;
+    margin-top: 6vh;
 }
 
 .check-box {
@@ -156,8 +167,6 @@ body {
     bottom: 6.8vh;
     position: absolute;
 }
-
-/* localizaçao das caixas de login e register que depois sao movidas */
 
 #login {
     left: 5vh;

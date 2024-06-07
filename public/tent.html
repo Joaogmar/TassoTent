@@ -25,8 +25,8 @@
     <div>
         <img class="t-logo" id="home" src="img/logotasso.png" alt="TassoLogo">
         <img class="bck-image" src="img/bck-tent.png" alt="background">
-        <button class="sett-button" id="settButton">
-            <span class="material-symbols-outlined sett-icon">settings</span>
+        <button class="update-button" id="settButton">
+            <span class="material-symbols-outlined update-icon">account_circle</span>
         </button>
     </div>
     <div class="container">
@@ -55,21 +55,27 @@
             </button>
         </div>
     </div>
-    <div class="sett-popup" id="settPopup">
-        <button class="close-sett" id="closeSett">
+    <div class="update-popup" id="updatePopup">
+        <button class="close-update" id="closeUpdate">
             <span class="material-symbols-outlined close-sett-icon">arrow_left_alt</span>
         </button>
-        <div class="sett-popup-title">
-            <h2>Definições</h2>
-            <div class="options-column">
-                <button class="option-button">IDIOMA</button>
-                <button class="option-button">AJUDA</button>
-                <button class="option-button">FAQs</button>
-                <button class="option-button">LOGOUT</button>
+        <div class="update-popup-title">
+            <h2>Update Profile</h2>
+            <div class="update-column">
+                <img class="update-logo" id="home" src="img/logotasso.png" alt="TassoLogo">
+                <h3 class="tent-name-update">Tent Name</h3>
+                <h3 class="type-np">Type Your New Password</h3>
+                <div style="position: relative; width: 100%;">
+                    <input type="password" id="userNewPassword" name="newPassword" class="input-field-update" placeholder="New Password" required>
+                    <button onclick="togglePasswordVisibility()" class="toggle-password">
+                        <span class="material-symbols-outlined">visibility</span>
+                    </button>
+                </div>
+                <button type="submit" class="submit-btn-update">Update Password</button>
             </div>
         </div>
     </div>
-    <div id="settOverlay" class="sett-overlay"></div>
+    <div id="updateOverlay" class="update-overlay"></div>
     <script src="javascript/tent.js"></script>
 </body>
 
