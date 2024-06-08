@@ -24,7 +24,20 @@ document.getElementById('fan-button').addEventListener('click', function () {
 });
 
 // Function to open the settings popup
-function openSettingsPopup() {
+async function openSettingsPopup() {
+    try {
+        const response = await fetch('/getTentUsername');
+        if (response.ok) {
+            const data = await response.json();
+            const tentNameElement = document.getElementById('tent-name');
+            tentNameElement.textContent = data.username;
+        } else {
+            console.error('Failed to fetch tent name:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error fetching tent name:', error);
+    }
+
     const popup = document.getElementById('updatePopup');
     const overlay = document.getElementById('updateOverlay');
     popup.style.display = 'block';
@@ -32,7 +45,6 @@ function openSettingsPopup() {
     overlay.style.display = 'block';
 }
 
-// Event listener for opening the settings popup
 document.getElementById('settButton').addEventListener('click', openSettingsPopup);
 
 // Event listener for closing the settings popup
@@ -104,3 +116,40 @@ if (logoutButton) {
 } else {
     console.error('Logout button not found');
 }
+
+document.getElementById('settButton').addEventListener('click', openSettingsPopup);
+
+// Function to hide the popup
+function hidePopup() {
+    const popup = document.getElementById('updatePopup');
+    const overlay = document.getElementById('updateOverlay');
+    popup.classList.add('hide');
+    overlay.style.display = 'none';
+}
+
+// Event listener for updating the password
+document.getElementById('updatePasswordForm').addEventListener('submit', async function (event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const newPassword = document.getElementById('userNewPassword').value;
+    try {
+        const response = await fetch('/updateTentPasswordUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ newPassword })
+        });
+        if (response.ok) {
+            const data = await response.json();
+            alert(data.message);
+            hidePopup(); // Call the function to hide the popup
+        } else {
+            console.error('Failed to update password:', response.statusText);
+            alert('Failed to update password. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error updating password:', error);
+        alert('An error occurred while updating the password. Please try again.');
+    }
+});

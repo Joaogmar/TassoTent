@@ -63,18 +63,17 @@
             <h2>Update Profile</h2>
             <div class="update-column">
                 <img class="update-logo" id="home" src="img/logotasso.png" alt="TassoLogo">
-                <h3 class="tent-name-update">Tent Name</h3>
-                <h3 class="type-np">Type Your New Password</h3>
-                <div style="position: relative; width: 100%;">
-                    <input type="password" id="userNewPassword" name="newPassword" class="input-field-update" placeholder="New Password" required>
-                    <button onclick="togglePasswordVisibility()" class="toggle-password">
-                        <span class="material-symbols-outlined">visibility</span>
-                    </button>
-                </div>
-                <button type="submit" class="submit-btn-update">Update Password</button>
+                <h3 class="tent-name-update" id="tent-name">Tent Name</h3>
+                <form id="updatePasswordForm"> 
+                    <h3 class="type-np">Type Your New Password</h3>
+                    <div style="position: relative; width: 100%;">
+                        <input type="password" id="userNewPassword" name="newPassword" class="input-field-update" placeholder="New Password" required>
+                        <button type="submit" class="submit-btn-update">Update Password</button> 
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
+    </div>    
     <div id="updateOverlay" class="update-overlay"></div>
     <script src="javascript/tent.js"></script>
 </body>

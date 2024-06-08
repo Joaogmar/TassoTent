@@ -168,6 +168,33 @@ async function updateAllPasswords(req, res) {
   }
 }
 
+async function updateTentPasswordUser(req, res) {
+  try {
+      const { newPassword } = req.body;
+      const username = req.session.user.username;
+
+      if (!newPassword) {
+          return res.status(400).json({ error: 'Missing required field (newPassword)' });
+      }
+
+      const userRef = admin.database().ref('users/tents').child(username);
+
+      // Validate tent existence (optional)
+      const tentSnapshot = await userRef.once('value');
+      if (!tentSnapshot.exists()) {
+          return res.status(404).json({ error: 'Tent not found' });
+      }
+
+      await userRef.update({ password: newPassword });
+
+      console.log('Tent password updated successfully:', username);
+      res.status(200).json({ message: 'Tent password updated successfully' });
+  } catch (error) {
+      console.error('Error updating tent password:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
 async function tentLogin(req, res) {
   const { username, password } = req.body;
 
@@ -189,7 +216,15 @@ async function tentLogin(req, res) {
   }
 }
 
-
+const getTentUsername = (req, res) => {
+  if (req.session.user && req.session.user.role === 'tent') {
+      // Return the tent's username
+      return res.json({ username: req.session.user.username });
+  } else {
+      // Return an error if the user is not authorized
+      return res.status(403).json({ error: 'Unauthorized' });
+  }
+};
 
 module.exports = {
   createTent,
@@ -198,5 +233,7 @@ module.exports = {
   getTotalTentCount, 
   getAllTents,
   updateTentPassword,
-  updateAllPasswords
+  updateTentPasswordUser,
+  updateAllPasswords,
+  getTentUsername
 };
