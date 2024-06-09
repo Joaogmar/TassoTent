@@ -1,4 +1,3 @@
-// Function to handle the door button click
 document.getElementById('door-button').addEventListener('click', function () {
     console.log('Botão clicado!');
     const iconElement = document.getElementById('door-icon');
@@ -9,7 +8,6 @@ document.getElementById('door-button').addEventListener('click', function () {
     }
 });
 
-// Function to handle the fan button click
 document.getElementById('fan-button').addEventListener('click', function () {
     console.log('Botão clicado!');
     const iconElement = document.getElementById('fan-icon');
@@ -23,7 +21,6 @@ document.getElementById('fan-button').addEventListener('click', function () {
     }
 });
 
-// Function to open the settings popup
 async function openSettingsPopup() {
     try {
         const response = await fetch('/getTentUsername');
@@ -47,7 +44,6 @@ async function openSettingsPopup() {
 
 document.getElementById('settButton').addEventListener('click', openSettingsPopup);
 
-// Event listener for closing the settings popup
 document.getElementById('closeUpdate').addEventListener('click', function () {
     const popup = document.getElementById('updatePopup');
     const overlay = document.getElementById('updateOverlay');
@@ -55,7 +51,6 @@ document.getElementById('closeUpdate').addEventListener('click', function () {
     overlay.style.display = 'none';
 });
 
-// Event listener for closing the settings popup when overlay is clicked
 document.getElementById('updateOverlay').addEventListener('click', function (event) {
     const popup = document.getElementById('updatePopup');
     const overlay = document.getElementById('updateOverlay');
@@ -65,7 +60,6 @@ document.getElementById('updateOverlay').addEventListener('click', function (eve
     }
 });
 
-// Event listener for hiding the popup when animation ends
 document.getElementById('updatePopup').addEventListener('animationend', function (event) {
     if (event.animationName === 'slideOut') {
         this.style.display = 'none';
@@ -84,20 +78,16 @@ function togglePasswordVisibility() {
     }
 }
 
-// Function to handle logout
 async function handleLogout() {
     try {
         console.log('Logging out...');
 
-        // Send a POST request to the logout endpoint on the server
         const response = await fetch('/logout', {
             method: 'POST',
         });
 
-        // Check if the response was successful
         if (response.ok) {
             console.log('Logout successful');
-            // Redirect the user to the start.html page
             window.location.href = 'start.html';
         } else {
             console.error('Failed to logout:', response.statusText);
@@ -109,7 +99,6 @@ async function handleLogout() {
     }
 }
 
-// Add an event listener to the logout button
 const logoutButton = document.querySelector('.nav-btn.logout-btn');
 if (logoutButton) {
     logoutButton.addEventListener('click', handleLogout);
@@ -119,7 +108,6 @@ if (logoutButton) {
 
 document.getElementById('settButton').addEventListener('click', openSettingsPopup);
 
-// Function to hide the popup
 function hidePopup() {
     const popup = document.getElementById('updatePopup');
     const overlay = document.getElementById('updateOverlay');
@@ -127,9 +115,8 @@ function hidePopup() {
     overlay.style.display = 'none';
 }
 
-// Event listener for updating the password
 document.getElementById('updatePasswordForm').addEventListener('submit', async function (event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); 
 
     const newPassword = document.getElementById('userNewPassword').value;
     try {
@@ -143,7 +130,7 @@ document.getElementById('updatePasswordForm').addEventListener('submit', async f
         if (response.ok) {
             const data = await response.json();
             alert(data.message);
-            hidePopup(); // Call the function to hide the popup
+            hidePopup(); 
         } else {
             console.error('Failed to update password:', response.statusText);
             alert('Failed to update password. Please try again.');

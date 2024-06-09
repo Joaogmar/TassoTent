@@ -19,6 +19,7 @@ router.get('/allTents', tentController.getAllTents);
 router.put('/updateTentPassword', tentController.updateTentPassword);
 router.put('/updateAllPasswords', tentController.updateAllPasswords);
 router.post('/updateTentPasswordUser', tentController.updateTentPasswordUser);
+router.get('/getTentLocation', tentController.getTentLocation);
 
 // Chat routes
 router.post('/sendMessage', chatController.isAuthenticated, chatController.sendMessage);

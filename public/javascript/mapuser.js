@@ -1,30 +1,46 @@
-//!DONT REMOVE COMMENTS
 import { fetchWeatherData } from './weather.js';
 
-function initMap() {
+async function getTentLocation() {
+    try {
+        const response = await fetch('/getTentLocation');
+        if (!response.ok) {
+            throw new Error('Failed to fetch tent location');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching tent location:', error);
+        return null;
+    }
+}
+
+async function initMap() {
+    let tentLocation = await getTentLocation();
+    console.log('Tent Location:', tentLocation);
+
+    if (!tentLocation || isNaN(tentLocation.latitude) || isNaN(tentLocation.longitude)) {
+        console.error('Invalid tent location');
+        console.error('Tent location:', tentLocation);
+        console.error('Using default location');
+        tentLocation = { lat: 38.48425, lng: -8.94301 }; 
+    } else {
+        tentLocation = { lat: tentLocation.latitude, lng: tentLocation.longitude };
+    }
+
+    console.log('Setting map center to:', tentLocation);
+
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 15,
-        center: { lat: 38.48425, lng: -8.94301 },
+        center: tentLocation,
         mapId: "4504f8b37365c3d0",
     });
+
     const userIcon = document.createElement("div");
     const tentIcon = document.createElement("div");
 
     userIcon.innerHTML = '<i class="fa-solid fa-user"></i>';
     tentIcon.innerHTML = '<i class="fa-solid fa-campground"></i>';
-    // Set LatLng and title text for the markers. The first marker (Boynton Pass)
-    // receives the initial focus when tab is pressed. Use arrow keys to
-    // move between markers; press tab again to cycle through the map controls.
 
-    //TODO Get tentLocation from sensor 
-
-    const tentLocation = { lat: 38.48425, lng: -8.94301 };
-
-    // Create an info window to share between markers.
     const infoWindow = new google.maps.InfoWindow();
-
-    // Style the tent marker.
-    //?Change icon color?
 
     const tentMarker = new google.maps.marker.PinView({
         glyph: tentIcon,
@@ -33,7 +49,6 @@ function initMap() {
         borderColor: "#37776e",
     });
 
-    // Style the user marker.
     const userMarker = new google.maps.marker.PinView({
         glyph: userIcon,
         glyphColor: "#9dc09d",
@@ -48,13 +63,11 @@ function initMap() {
         content: tentMarker.element,
     });
 
-    // Add a click listener for the tent marker, and set up the info window.
     tentLocationMarker.addListener("click", async ({ domEvent, latLng }) => {
         const { target } = domEvent;
-    
+
         infoWindow.close();
-    
-        // Fetch weather data for the tent location
+
         const weatherData = await fetchWeatherData(tentLocation.lat, tentLocation.lng);
         let weatherContent = 'Unable to fetch weather data';
         if (weatherData) {
@@ -74,7 +87,7 @@ function initMap() {
                 </div>
             `;
         }
-    
+
         infoWindow.setContent(weatherContent);
         infoWindow.open(tentLocationMarker.map, tentLocationMarker);
     });
@@ -91,7 +104,6 @@ function initMap() {
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(routeButton);
 
-    // Try HTML5 geolocation.
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             (position) => {
@@ -111,7 +123,6 @@ function initMap() {
                     content: userMarker.element,
                 });
 
-                // Add a click listener for the user marker, and set up the info window.
                 userLocationMarker.addListener("click", ({ domEvent, latLng }) => {
                     const { target } = domEvent;
 
@@ -121,7 +132,6 @@ function initMap() {
                 });
 
                 routeButton.addEventListener("click", () => {
-                    // Calculate route to tent location and display on the map
                     const directionsService = new google.maps.DirectionsService();
                     const directionsRenderer = new google.maps.DirectionsRenderer();
                     directionsRenderer.setMap(map);
@@ -149,7 +159,6 @@ function initMap() {
             }
         );
     } else {
-        // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     }
 }

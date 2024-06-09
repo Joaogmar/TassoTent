@@ -226,6 +226,30 @@ const getTentUsername = (req, res) => {
   }
 };
 
+const getTentLocation = (req, res) => {
+  if (req.session.user && req.session.user.role === 'tent') {
+      const tentId = req.session.user.username; 
+
+      admin.database().ref(`/sensorData/${tentId}/gpsData`).once('value', (snapshot) => {
+          if (snapshot.exists()) {
+              const gpsData = snapshot.val();
+              const latitude = parseFloat(gpsData.latitude);
+              const longitude = parseFloat(gpsData.longitude);
+
+              if (!isNaN(latitude) && !isNaN(longitude)) {
+                  return res.status(200).json({ latitude, longitude });
+              } else {
+                  return res.status(400).json({ error: 'Invalid latitude or longitude values' });
+              }
+          } else {
+              return res.status(404).json({ error: 'Location not found' });
+          }
+      });
+  } else {
+      return res.status(403).json({ error: 'Unauthorized' });
+  }
+};
+
 module.exports = {
   createTent,
   tentLogin,
@@ -235,5 +259,6 @@ module.exports = {
   updateTentPassword,
   updateTentPasswordUser,
   updateAllPasswords,
-  getTentUsername
+  getTentUsername,
+  getTentLocation
 };
