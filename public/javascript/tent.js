@@ -141,7 +141,13 @@ document.getElementById('updatePasswordForm').addEventListener('submit', async f
     }
 });
 
-document.addEventListener('DOMContentLoaded', async function () {
+document.addEventListener('DOMContentLoaded', function () {
+    fetchTentData();
+
+    setInterval(fetchTentData, 1000);
+});
+
+async function fetchTentData() {
     try {
         const response = await fetch('/getTentData');
         if (response.ok) {
@@ -155,7 +161,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     } catch (error) {
         console.error('Error fetching tent data:', error);
     }
-});
+}
 
 function updateTemperature(temperature) {
     const temperatureButton = document.querySelector('.bi-square:nth-of-type(1)');
@@ -176,6 +182,6 @@ function updateAirQuality(air) {
     if (airButton) {
         airButton.innerHTML = `<span class="material-symbols-outlined bi-icon">air</span>${air}`;
     } else {
-        console.error('Air quality button not found');  // Add error log for debugging
+        console.error('Air quality button not found');  
     }
 }
