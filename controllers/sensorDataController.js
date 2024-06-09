@@ -42,7 +42,18 @@ const getSensorData = (req, res) => {
     });
 };
 
+const getAllSensorData = (req, res) => {
+    db.ref('/sensorData').once('value', (snapshot) => {
+        if (snapshot.exists()) {
+            res.status(200).json(snapshot.val());
+        } else {
+            res.status(404).send("No sensor data found");
+        }
+    });
+};
+
 module.exports = {
     receiveSensorData,
-    getSensorData
+    getSensorData,
+    getAllSensorData
 };

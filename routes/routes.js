@@ -28,6 +28,7 @@ router.get('/getMessages/:chatId', chatController.isAuthenticated, chatControlle
 
 // Sensor Data routes
 router.post('/sensorData', sensorDataController.receiveSensorData);
-router.get('/sensorData/:tentId', sensorDataController.getSensorData); 
+router.get('/sensorData/:tentId', sensorDataController.getSensorData);
+router.get('/allSensorData', sensorDataController.getAllSensorData); 
 
 module.exports = router;
