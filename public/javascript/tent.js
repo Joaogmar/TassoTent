@@ -140,3 +140,42 @@ document.getElementById('updatePasswordForm').addEventListener('submit', async f
         alert('An error occurred while updating the password. Please try again.');
     }
 });
+
+document.addEventListener('DOMContentLoaded', async function () {
+    try {
+        const response = await fetch('/getTentData');
+        if (response.ok) {
+            const data = await response.json();
+            updateTemperature(data.temperature);
+            updateHumidity(data.humidity);
+            updateAirQuality(data.air);
+        } else {
+            console.error('Failed to fetch tent data:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error fetching tent data:', error);
+    }
+});
+
+function updateTemperature(temperature) {
+    const temperatureButton = document.querySelector('.bi-square:nth-of-type(1)');
+    if (temperatureButton) {
+        temperatureButton.innerHTML = `<span class="material-symbols-outlined bi-icon">device_thermostat</span>${temperature}°C`;
+    }
+}
+
+function updateHumidity(humidity) {
+    const humidityButton = document.querySelector('.bi-square:nth-of-type(2)');
+    if (humidityButton) {
+        humidityButton.innerHTML = `<span class="material-symbols-outlined bi-icon">humidity_percentage</span>${humidity}%`;
+    }
+}
+
+function updateAirQuality(air) {
+    const airButton = document.querySelector('#air-quality-button');
+    if (airButton) {
+        airButton.innerHTML = `<span class="material-symbols-outlined bi-icon">air</span>${air}`;
+    } else {
+        console.error('Air quality button not found');  // Add error log for debugging
+    }
+}

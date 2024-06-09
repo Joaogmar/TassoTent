@@ -250,6 +250,32 @@ const getTentLocation = (req, res) => {
   }
 };
 
+const getTentData = (req, res) => {
+  if (req.session.user && req.session.user.role === 'tent') {
+      const tentId = req.session.user.username; 
+
+      admin.database().ref(`/sensorData/${tentId}`).once('value', (snapshot) => {
+          if (snapshot.exists()) {
+              const tentData = snapshot.val();
+              const temperature = tentData.temperature;
+              const humidity = tentData.humidity;
+              const airGas = tentData.gasValue;
+              const airDescription = tentData.gasDescription;
+
+              if (!isNaN(temperature) && !isNaN(humidity) && !isNaN(airGas) && airDescription) {
+                  return res.status(200).json({ temperature, humidity, air: `${airGas} - ${airDescription}` });
+              } else {
+                  return res.status(400).json({ error: 'Invalid temperature, humidity, or air data' });
+              }
+          } else {
+              return res.status(404).json({ error: 'Tent data not found' });
+          }
+      });
+  } else {
+      return res.status(403).json({ error: 'Unauthorized' });
+  }
+};
+
 module.exports = {
   createTent,
   tentLogin,
@@ -260,5 +286,6 @@ module.exports = {
   updateTentPasswordUser,
   updateAllPasswords,
   getTentUsername,
-  getTentLocation
+  getTentLocation,
+  getTentData
 };
