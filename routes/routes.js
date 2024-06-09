@@ -4,6 +4,7 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const tentController = require('../controllers/tentController');
 const chatController = require('../controllers/chatController');
+const sensorDataController = require('../controllers/sensorDataController');
 
 router.post('/admins', userController.createAdmin);
 router.post('/login/admin', userController.adminLogin);
@@ -22,5 +23,9 @@ router.post('/updateTentPasswordUser', tentController.updateTentPasswordUser);
 // Chat routes
 router.post('/sendMessage', chatController.isAuthenticated, chatController.sendMessage);
 router.get('/getMessages/:chatId', chatController.isAuthenticated, chatController.getMessages);
+
+// Sensor Data routes
+router.post('/sensorData', sensorDataController.receiveSensorData);
+router.get('/sensorData/:tentId', sensorDataController.getSensorData); 
 
 module.exports = router;

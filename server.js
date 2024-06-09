@@ -33,35 +33,6 @@ app.use((req, res, next) => {
     next();
 });
 
-let sensorDataStorage = [];
-
-app.post('/sensorData', (req, res) => {
-    const sensorData = req.body;
-    const temperature = sensorData.temperature;
-    const humidity = sensorData.humidity;
-    const motionDetected = sensorData.motionDetected;
-    const gasValue = sensorData.gasValue;
-    const gpsData = sensorData.gpsData;
-  
-    const gasDescription = gasValue >= 800 ? 'Gás tóxico detectado' : 'Gás não detectado';
-  
-    console.log(`Received sensor data: temperature: ${temperature}, humidity: ${humidity}, motionDetected: ${motionDetected}, gasDescription: ${gasDescription}, gpsData: ${gpsData.latitude}, ${gpsData.longitude}`);
-
-    sensorDataStorage.push({
-        temperature,
-        humidity,
-        motionDetected,
-        gasDescription,
-        gpsData
-    });
-
-    res.status(200).send('OK');
-});
-
-app.get('/sensorData', (req, res) => {
-    res.status(200).json(sensorDataStorage);
-});
-
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
 });
