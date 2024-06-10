@@ -1,27 +1,18 @@
-document.getElementById('door-button').addEventListener('click', function () {
+
+document.getElementById('move-button').addEventListener('click', function () {
     console.log('Botão clicado!');
-    const iconElement = document.getElementById('door-icon');
-    if (iconElement.innerText === 'door_front') {
-        iconElement.innerText = 'meeting_room';
+    const iconElement = document.getElementById('move-icon');
+    const textElement = document.getElementById('move-text');
+    if (iconElement.innerText === 'wifi_tethering_error') {
+        iconElement.innerText = 'radar';
+        textElement.innerText = 'Moviment Not Detected';
     } else {
-        iconElement.innerText = 'door_front';
+        iconElement.innerText = 'wifi_tethering_error';
+        textElement.innerText = 'Moviment Detected';
     }
 });
 
-document.getElementById('fan-button').addEventListener('click', function () {
-    console.log('Botão clicado!');
-    const iconElement = document.getElementById('fan-icon');
-    const textElement = document.getElementById('fan-text');
-    if (iconElement.innerText === 'mode_fan') {
-        iconElement.innerText = 'mode_fan_off';
-        textElement.innerText = 'Off';
-    } else {
-        iconElement.innerText = 'mode_fan';
-        textElement.innerText = 'On';
-    }
-});
-
-async function openSettingsPopup() {
+async function openUpdatePopup() {
     try {
         const response = await fetch('/getTentUsername');
         if (response.ok) {
@@ -42,7 +33,7 @@ async function openSettingsPopup() {
     overlay.style.display = 'block';
 }
 
-document.getElementById('settButton').addEventListener('click', openSettingsPopup);
+document.getElementById('updateButton').addEventListener('click', openUpdatePopup);
 
 document.getElementById('closeUpdate').addEventListener('click', function () {
     const popup = document.getElementById('updatePopup');
@@ -106,7 +97,7 @@ if (logoutButton) {
     console.error('Logout button not found');
 }
 
-document.getElementById('settButton').addEventListener('click', openSettingsPopup);
+document.getElementById('updateButton').addEventListener('click', openUpdatePopup);
 
 function hidePopup() {
     const popup = document.getElementById('updatePopup');

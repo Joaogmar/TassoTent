@@ -25,7 +25,7 @@
     <div>
         <img class="t-logo" id="home" src="img/logotasso.png" alt="TassoLogo">
         <img class="bck-image" src="img/bck-tent.png" alt="background">
-        <button class="update-button" id="settButton">
+        <button class="update-button" id="updateButton">
             <span class="material-symbols-outlined update-icon">account_circle</span>
         </button>
     </div>
@@ -33,31 +33,25 @@
         <div class="button-container">
             <button class="bi-square">
                 <span class="material-symbols-outlined bi-icon">device_thermostat</span>
-                10°C
+                N/A
             </button>
             <button class="bi-square">
                 <span class="material-symbols-outlined bi-icon">humidity_percentage</span>
-                20%
+                N/A
             </button>
-            <button id="fan-button" class="bi-squarec">
-                <span id="fan-icon" class="material-symbols-outlined bi-icon">mode_fan</span>
-                <span id="fan-text">On</span>
+            <button id="move-button" class="bi-squarec">
+                <span id="move-icon" class="material-symbols-outlined bi-icon">radar</span>
+                <span id="move-text" class="move-text">Moviment Not Detected</span>
             </button>
             <button class="bi-squarec" id="air-quality-button">
                 <span class="material-symbols-outlined bi-icon">air</span>
                 <span id="air-quality-text">N/A</span>
             </button>
-            <button id="door-button" class="bi-square">
-                <span id="door-icon" class="material-symbols-outlined bi-icon">door_front</span>
-            </button>
-            <button class="bi-square">
-                <span class="material-symbols-outlined bi-icon">forum</span>
-            </button>
         </div>
     </div>
     <div class="update-popup" id="updatePopup">
         <button class="close-update" id="closeUpdate">
-            <span class="material-symbols-outlined close-sett-icon">arrow_left_alt</span>
+            <span class="material-symbols-outlined close-update-icon">arrow_left_alt</span>
         </button>
         <div class="update-popup-title">
             <h2>Update Profile</h2>
@@ -68,8 +62,11 @@
                     <h3 class="type-np">Type Your New Password</h3>
                     <div style="position: relative; width: 100%;">
                         <input type="password" id="userNewPassword" name="newPassword" class="input-field-update" placeholder="New Password" required>
-                        <button type="submit" class="submit-btn-update">Update Password</button> 
+                        <button onclick="togglePasswordVisibility()" class="toggle-password">
+                            <span class="material-symbols-outlined">visibility</span>
+                        </button>
                     </div>
+                    <button type="submit" class="submit-btn-update">Update Password</button> 
                 </form>
             </div>
         </div>

@@ -95,6 +95,10 @@
     font-size: 6.4vh;
 }
 
+.move-text {
+    font-size: 1.6vh;
+}
+
 .update-button {
     display: flex;
     align-items: center;

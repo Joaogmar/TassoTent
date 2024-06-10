@@ -1,33 +1,64 @@
+.navbar {
+    background-color: #37776e;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    left: 0;
+}
+
+.nav-btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 1.4vh 1.6vh;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background-color: #FEF6CD;
+    color: black;
+}
+
 .chat-container {
     width: 80%;
     margin: auto;
     border: 1px solid #ccc;
     padding: 10px;
 }
+
 .message-container {
     height: 400px;
     overflow-y: scroll;
     border: 1px solid #ddd;
     padding: 10px;
 }
+
 .message {
     padding: 5px;
     margin-bottom: 10px;
     border-bottom: 1px solid #eee;
 }
+
 .message .sender {
     font-weight: bold;
 }
+
 .message-form {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
 }
+
 .message-form input[type="text"] {
     width: 80%;
     padding: 10px;
     border: 1px solid #ccc;
 }
+
 .message-form button {
     width: 15%;
     padding: 10px;

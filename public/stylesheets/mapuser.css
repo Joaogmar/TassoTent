@@ -19,7 +19,7 @@
 }
 
 #map {
-    height: 100%;
+    height: calc(100% - 4.4vh);
 }
 
 html,
@@ -27,6 +27,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 .wind-arrow {
@@ -34,4 +35,29 @@ body {
     color: #37776e; 
     vertical-align: middle;
     margin-left: 5px;
+}
+
+.custom-map-control-button {
+    padding: 0.8vh 1.6vh;
+    font-size: 1.5vh;
+    width: 15vh;
+    height: 4.5vh;
+    margin: 0 auto;
+    text-shadow: 0.1vh 0.1vh 0.2vh rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.4vh 0.6vh rgba(0, 0, 0, 0.1);
+    background-color: #A69F7C;
+    color: #FFFFFF;
+    border-radius: 0.5vh;
+    cursor: pointer;
+    margin-top: 1vh;
+    border: none;
+}
+
+.location-button {
+    margin-right: 5vh;
+}
+
+.custom-map-control-button:hover {
+    background-color: #FEF6CD;
+    color: #A69F7C;
 }

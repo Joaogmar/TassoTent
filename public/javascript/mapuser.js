@@ -96,10 +96,10 @@ async function initMap() {
     const routeButton = document.createElement("button");
 
     locationButton.textContent = "Pan to Current Location";
-    locationButton.classList.add("custom-map-control-button");
+    locationButton.classList.add("custom-map-control-button", "location-button");
 
     routeButton.textContent = "Route to my tent";
-    routeButton.classList.add("custom-map-control-button");
+    routeButton.classList.add("custom-map-control-button", "route-button");
 
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(routeButton);
