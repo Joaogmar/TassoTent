@@ -52,24 +52,30 @@ document.addEventListener('DOMContentLoaded', (event) => {
     setInterval(fetchMessages, 1000); 
 });
 
-// Event listener for logout button
-document.querySelector('.nav-btn:last-of-type').addEventListener('click', async () => {
+async function handleLogout() {
     try {
+        console.log('Logging out...');
+
         const response = await fetch('/logout', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
         });
-  
+
         if (response.ok) {
-            console.log('Logged out successfully');
-            // Redirect to home page or login page
-            window.location.href = 'start.html'; // Redirect to start.html after logout
+            console.log('Logout successful');
+            window.location.href = 'start.html';
         } else {
-            console.error('Failed to log out:', response.statusText);
+            console.error('Failed to logout:', response.statusText);
+            alert('Failed to logout. Please try again.');
         }
     } catch (error) {
         console.error('Error logging out:', error);
+        alert('An error occurred during logout. Please try again.');
     }
-  });
+}
+
+const logoutButton = document.querySelector('.nav-btn.logout-btn');
+if (logoutButton) {
+    logoutButton.addEventListener('click', handleLogout);
+} else {
+    console.error('Logout button not found');
+}

@@ -24,26 +24,24 @@
                 <button type="button" class="toggle-btn-reg" onclick="register()">Admin</button>
             </div>
             <form id="login" class="input-group-lg" onsubmit="handleTentLogin(event)">
-                <input type="text" id="tentUsername" name="username" class="input-field-lg" placeholder="Username" required>
-                <input type="password" id="tentPassword" name="password" class="input-field-lg" placeholder="Password" required>
+                <input type="text" id="tentUsername" name="username" class="input-field-lg" placeholder="Username"
+                    required>
+                <input type="password" id="tentPassword" name="password" class="input-field-lg" placeholder="Password"
+                    required>
                 <button type="submit" class="submit-btn-lg">Login</button>
-            </form>            
+            </form>
             <form id="register" class="input-group-reg" onsubmit="handleAdminLogin(event)">
-                <input type="text" id="adminUsername" name="username" class="input-field-reg" placeholder="Admin" required>
-                <input type="password" id="adminPassword" name="password" class="input-field-reg" placeholder="Password" required>
+                <input type="text" id="adminUsername" name="username" class="input-field-reg" placeholder="Admin"
+                    required>
+                <input type="password" id="adminPassword" name="password" class="input-field-reg" placeholder="Password"
+                    required>
                 <button type="submit" class="submit-btn-reg">Login</button>
             </form>
             <script>
 
-                /*isto e super pedreiro mas é capaz de funcionar
-                essencialmente ambas as forms estao na pagina e simplesmente sao mexidas para a esquerda ou direita
-                depois a formbox tem o overflow hidden que e para as ocultar quando saem para fora dela */
-
                 var x = document.getElementById("login");
                 var y = document.getElementById("register");
                 var z = document.getElementById("btn");
-
-                /* estes valores nao precisas de mudar porques nao fazem diferença */
 
                 function register() {
                     x.style.left = "-40vh";
@@ -64,24 +62,41 @@
         <img class="logo" src="img/logotasso.png" alt="TassoLogo">
         <img class="background-image" src="img/vamos.jpg" alt="background">
         <h2 class="vibra-text">VIBRA AO RITMO DA TUA FESTA - INSTALA-TE JÁ COM A TASSO TENT!</h2>
-        <button class="next-button" id="nextButton">Seguinte</button>
+        <button class="next-button" id="nextButton">Next</button>
     </div>
 
     <div class="site-description-box">
         <div class="site-description">
-            <h2>Conheça a Tasso Tent</h2>
-            <p class="site-description-bv">Bem-vindo!</p>
-            <p class="site-description-text">Poderás aceder e utilizar os nossos equipamentos IoT, além de obter
-                informações detalhadas sobre os
-                mesmos. Explore as nossas soluções inovadoras, tire dúvidas e descubra como as nossas tecnologias
-                podem
-                transformar a sua experiência em festivais.</p>
-            <p class="site-description-text">Estamos aqui para ajudá-lo a aproveitar ao máximo cada momento</p>
+            <h2>Discover the Tasso Tent</h2>
+            <p class="site-description-bv">Welcome!</p>
+            <p class="site-description-text">You can access and use our IoT equipment, as well as obtain detailed information about them.
+                                             Explore our innovative solutions, ask questions, and discover how our technologies can 
+                                             transform your festival experience.</p>
+            <p class="site-description-text">We are here to help you make the most of every moment.</p>
+        </div>
+    </div>
+
+    <div class="tent-description-box">
+        <div class="tent-title">
+            <h2>Inside the Tasso Tent</h2>
+        </div>
+        <div class="sensors-description">
+            <img class="tent-img" src="img/tenda.png" alt="TendaFig">
+            <div class="sensor-texts">
+                <div class="sensor-column">
+                    <p>↪ Temperature and Humidity Sensor</p>
+                    <p>↪ Air Quality sensor</p>
+                </div>
+                <div class="sensor-column">
+                    <p>↪ Motion sensor</p>
+                    <p>↪ GPS Module</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="team-container">
-        <h2>Equipa</h2>
+        <h2>Our Team</h2>
 
         <div class="team-members">
             <!-- Adicionei uma nova classe "team-member-box" para a caixa de descrição da equipe -->
@@ -103,9 +118,9 @@
     </div>
 
     <div class="contact-container">
-        <h2>Contato</h2>
-        <p class="contact-info">Para obter ajuda ou mais informações, entre em contato conosco:</p>
-        <p class="contact-email">Email: contato@tasso.pt</p>
+        <h2>Contact</h2>
+        <p class="contact-info">For assistance or more information, please contact us:</p>
+        <p class="contact-email">Email: contacto@tasso.pt</p>
     </div>
 
     <script src="javascript/start.js"></script>

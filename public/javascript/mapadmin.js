@@ -59,3 +59,25 @@ async function initMap() {
 }
 
 window.initMap = initMap;
+
+// Event listener for logout button
+document.querySelector('.nav-btn:last-of-type').addEventListener('click', async () => {
+  try {
+      const response = await fetch('/logout', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+      });
+
+      if (response.ok) {
+          console.log('Logged out successfully');
+          // Redirect to home page or login page
+          window.location.href = 'start.html'; // Redirect to start.html after logout
+      } else {
+          console.error('Failed to log out:', response.statusText);
+      }
+  } catch (error) {
+      console.error('Error logging out:', error);
+  }
+});

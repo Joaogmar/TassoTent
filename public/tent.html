@@ -19,7 +19,7 @@
 <body>
     <nav class="navbar">
         <button class="nav-btn" onclick="window.location.href='mapuser.html'">Map</button>
-        <button class="nav-btn">Chat</button>
+        <button class="nav-btn" onclick="window.location.href='chatuser.html'">Chat</button>
         <button class="nav-btn logout-btn">Logout</button>
     </nav>
     <div>
@@ -62,7 +62,7 @@
                     <h3 class="type-np">Type Your New Password</h3>
                     <div style="position: relative; width: 100%;">
                         <input type="password" id="userNewPassword" name="newPassword" class="input-field-update" placeholder="New Password" required>
-                        <button onclick="togglePasswordVisibility()" class="toggle-password">
+                        <button type="button" onclick="togglePasswordVisibility()" class="toggle-password">
                             <span class="material-symbols-outlined">visibility</span>
                         </button>
                     </div>

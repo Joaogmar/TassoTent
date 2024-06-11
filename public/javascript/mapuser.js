@@ -174,3 +174,31 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 window.initMap = initMap;
+
+async function handleLogout() {
+    try {
+        console.log('Logging out...');
+
+        const response = await fetch('/logout', {
+            method: 'POST',
+        });
+
+        if (response.ok) {
+            console.log('Logout successful');
+            window.location.href = 'start.html';
+        } else {
+            console.error('Failed to logout:', response.statusText);
+            alert('Failed to logout. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error logging out:', error);
+        alert('An error occurred during logout. Please try again.');
+    }
+}
+
+const logoutButton = document.querySelector('.nav-btn.logout-btn');
+if (logoutButton) {
+    logoutButton.addEventListener('click', handleLogout);
+} else {
+    console.error('Logout button not found');
+}
