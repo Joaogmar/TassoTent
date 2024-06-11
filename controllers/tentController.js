@@ -261,11 +261,12 @@ const getTentData = (req, res) => {
               const humidity = tentData.humidity;
               const airGas = tentData.gasValue;
               const airDescription = tentData.gasDescription;
+              const motionDetected = tentData.motionDetected;
 
-              if (!isNaN(temperature) && !isNaN(humidity) && !isNaN(airGas) && airDescription) {
-                  return res.status(200).json({ temperature, humidity, air: `${airGas} - ${airDescription}` });
+              if (!isNaN(temperature) && !isNaN(humidity) && !isNaN(airGas) && airDescription && typeof motionDetected === 'string') {
+                  return res.status(200).json({ temperature, humidity, air: `${airGas} - ${airDescription}`, motionDetected });
               } else {
-                  return res.status(400).json({ error: 'Invalid temperature, humidity, or air data' });
+                  return res.status(400).json({ error: 'Invalid temperature, humidity, air data, or motionDetected data' });
               }
           } else {
               return res.status(404).json({ error: 'Tent data not found' });

@@ -1,17 +1,3 @@
-
-document.getElementById('move-button').addEventListener('click', function () {
-    console.log('Botão clicado!');
-    const iconElement = document.getElementById('move-icon');
-    const textElement = document.getElementById('move-text');
-    if (iconElement.innerText === 'wifi_tethering_error') {
-        iconElement.innerText = 'radar';
-        textElement.innerText = 'Moviment Not Detected';
-    } else {
-        iconElement.innerText = 'wifi_tethering_error';
-        textElement.innerText = 'Moviment Detected';
-    }
-});
-
 async function openUpdatePopup() {
     try {
         const response = await fetch('/getTentUsername');
@@ -146,6 +132,7 @@ async function fetchTentData() {
             updateTemperature(data.temperature);
             updateHumidity(data.humidity);
             updateAirQuality(data.air);
+            updateMotionDetection(data.motionDetected);
         } else {
             console.error('Failed to fetch tent data:', response.statusText);
         }
@@ -174,5 +161,17 @@ function updateAirQuality(air) {
         airButton.innerHTML = `<span class="material-symbols-outlined bi-icon">air</span>${air}`;
     } else {
         console.error('Air quality button not found');  
+    }
+}
+
+function updateMotionDetection(motionDetected) {
+    const iconElement = document.getElementById('move-icon');
+    const textElement = document.getElementById('move-text');
+    if (motionDetected === 'no') {
+        iconElement.innerText = 'radar';
+        textElement.innerText = 'Moviment Not Detected';
+    } else {
+        iconElement.innerText = 'wifi_tethering_error';
+        textElement.innerText = 'Moviment Detected';
     }
 }
