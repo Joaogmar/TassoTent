@@ -123,3 +123,8 @@ function handleAdminLogin(event) {
         alert('An error occurred during the login process.');
     });
 }
+
+AOS.init({
+    duration: 1200, // valores em milissegundos
+    once: true, // animação acontece apenas uma vez quando o elemento aparece na tela
+  });

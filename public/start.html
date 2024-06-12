@@ -12,6 +12,9 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.2/css/perfect-scrollbar.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/perfect-scrollbar/1.5.2/perfect-scrollbar.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+
 </head>
 
 <body>
@@ -59,28 +62,29 @@
     </div>
 
     <div class="container">
-        <img class="logo" src="img/logotasso.png" alt="TassoLogo">
+        <img class="logo" src="img/logotasso.png" alt="TassoLogo" data-aos="fade-right">
         <img class="background-image" src="img/vamos.jpg" alt="background">
-        <h2 class="vibra-text">VIBRA AO RITMO DA TUA FESTA - INSTALA-TE JÁ COM A TASSO TENT!</h2>
-        <button class="next-button" id="nextButton">Next</button>
+        <h2 class="vibra-text" data-aos="fade-right">VIBRA AO RITMO DA TUA FESTA - INSTALA-TE JÁ COM A TASSO TENT!</h2>
+        <button class="next-button" id="nextButton" data-aos="fade-right">Next</button>
     </div>
 
-    <div class="site-description-box">
-        <div class="site-description">
+    <div class="site-description-box" data-aos="fade-up">
+        <div class="site-description" data-aos="fade-right">
             <h2>Discover the Tasso Tent</h2>
             <p class="site-description-bv">Welcome!</p>
-            <p class="site-description-text">You can access and use our IoT equipment, as well as obtain detailed information about them.
-                                             Explore our innovative solutions, ask questions, and discover how our technologies can 
-                                             transform your festival experience.</p>
+            <p class="site-description-text">You can access and use our IoT equipment, as well as obtain detailed
+                information about them.
+                Explore our innovative solutions, ask questions, and discover how our technologies can
+                transform your festival experience.</p>
             <p class="site-description-text">We are here to help you make the most of every moment.</p>
         </div>
     </div>
 
-    <div class="tent-description-box">
-        <div class="tent-title">
+    <div class="tent-description-box" data-aos="fade-up">
+        <div class="tent-title" data-aos="fade-right">
             <h2>Inside the Tasso Tent</h2>
         </div>
-        <div class="sensors-description">
+        <div class="sensors-description" data-aos="fade-right">
             <img class="tent-img" src="img/tenda.png" alt="TendaFig">
             <div class="sensor-texts">
                 <div class="sensor-column">
@@ -95,11 +99,10 @@
         </div>
     </div>
 
-    <div class="team-container">
-        <h2>Our Team</h2>
+    <div class="team-box" data-aos="fade-up">
+        <h2 data-aos="fade-right">Our Team</h2>
 
-        <div class="team-members">
-            <!-- Adicionei uma nova classe "team-member-box" para a caixa de descrição da equipe -->
+        <div class="team-members" data-aos="fade-right">
             <div class="team-member team-member-box">
                 <h3 class="member-name">Rodrigo de Almeida</h3>
                 <img src="img/rodri.jpg" alt="Rodrigo de Almeida">
@@ -117,13 +120,14 @@
         </div>
     </div>
 
-    <div class="contact-container">
-        <h2>Contact</h2>
-        <p class="contact-info">For assistance or more information, please contact us:</p>
-        <p class="contact-email">Email: contacto@tasso.pt</p>
+    <div class="contact-box" data-aos="fade-up">
+        <h2 data-aos="fade-right">Contact</h2>
+        <p class="contact-info" data-aos="fade-right">For assistance or more information, please contact us:</p>
+        <p class="contact-info" data-aos="fade-right">Email: contacto@tasso.pt</p>
     </div>
 
     <script src="javascript/start.js"></script>
+    <script>AOS.init();</script>
 </body>
 
 </html>

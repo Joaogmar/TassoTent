@@ -169,9 +169,9 @@ function updateMotionDetection(motionDetected) {
     const textElement = document.getElementById('move-text');
     if (motionDetected === 'no') {
         iconElement.innerText = 'radar';
-        textElement.innerText = 'Moviment Not Detected';
+        textElement.innerText = 'Movement Not Detected';
     } else {
         iconElement.innerText = 'wifi_tethering_error';
-        textElement.innerText = 'Moviment Detected';
+        textElement.innerText = 'Movement Detected';
     }
 }
