@@ -81,3 +81,9 @@
 .chat-container h1 {
     margin-left: 2vh;
 }
+
+.timestamp {
+    font-size: 0.8em;
+    color: gray;
+    margin-left: 10px;
+}

@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 const message = messages[messageKey];
                 const messageElement = document.createElement('div');
                 messageElement.classList.add('message');
-                messageElement.innerHTML = `<span class="sender">${message.sender}:</span> ${message.text}`;
+                messageElement.innerHTML = `<span class="sender">${message.sender}:</span> ${message.text} <span class="timestamp">${new Date(message.timestamp).toLocaleString()}</span>`;
                 messageContainer.appendChild(messageElement);
             }
         } catch (error) {
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ chatId, sender, text }),
+                body: JSON.stringify({ chatId, text }),
             });
         } catch (error) {
             console.error('Error sending message:', error);

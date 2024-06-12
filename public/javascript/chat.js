@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 const message = messages[messageKey];
                 const messageElement = document.createElement('div');
                 messageElement.classList.add('message');
-                messageElement.innerHTML = `<span class="sender">${message.sender}:</span> ${message.text}`;
+                messageElement.innerHTML = `<span class="sender">${message.sender}:</span> ${message.text} <span class="timestamp">${new Date(message.timestamp).toLocaleString()}</span>`;
                 messageContainer.appendChild(messageElement);
             }
         } catch (error) {
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ chatId, sender, text }),
+                body: JSON.stringify({ chatId, text }),
             });
         } catch (error) {
             console.error('Error sending message:', error);
@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     setInterval(fetchMessages, 1000); 
 });
 
-// Event listener for logout button
 document.querySelector('.nav-btn:last-of-type').addEventListener('click', async () => {
     try {
         const response = await fetch('/logout', {
@@ -64,12 +63,11 @@ document.querySelector('.nav-btn:last-of-type').addEventListener('click', async 
   
         if (response.ok) {
             console.log('Logged out successfully');
-            // Redirect to home page or login page
-            window.location.href = 'start.html'; // Redirect to start.html after logout
+            window.location.href = 'start.html'; 
         } else {
             console.error('Failed to log out:', response.statusText);
         }
     } catch (error) {
         console.error('Error logging out:', error);
     }
-  });
+});
